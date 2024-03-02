@@ -45,6 +45,8 @@ class Board: ObservableObject{
     }
     
     func startTimer() {
+        timer?.invalidate()
+        self.seconds = 0
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.seconds += 1
         }

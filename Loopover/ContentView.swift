@@ -53,7 +53,7 @@ struct ContentView: View {
                 }
             }
             Spacer()
-            Button(action: {board.scramble()}) {
+            Button(action: {board.scramble(); board.startTimer()}) {
                 Image(systemName: "arrow.triangle.2.circlepath")
                     .padding()
                     .font(.title)
