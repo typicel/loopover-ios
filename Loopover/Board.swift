@@ -23,7 +23,7 @@ struct Move {
  */
 class Board: ObservableObject{
     @Published var board: [[Int]]
-    @Published var seconds: Int
+    @Published var hundreths: Int
     private var timer: Timer?
     var rows: Int
     var cols: Int
@@ -32,7 +32,7 @@ class Board: ObservableObject{
         self.rows = rows;
         self.cols = cols
         self.board = [[Int]]()
-        self.seconds = 0
+        self.hundreths = 0
         self.timer = nil
         
         for i in 0..<self.rows {
@@ -46,9 +46,9 @@ class Board: ObservableObject{
     
     func startTimer() {
         timer?.invalidate()
-        self.seconds = 0
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            self.seconds += 1
+        self.hundreths = 0
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
+            self.hundreths += 1
         }
     }
     
