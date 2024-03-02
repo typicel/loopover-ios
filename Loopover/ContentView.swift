@@ -42,20 +42,16 @@ struct ContentView: View {
         VStack {
             Spacer()
             Text(formatTime(self.board.seconds))
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 10) {
-                ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                    Text("\(board.board[index / board.cols][index % board.cols])")
-                        .font(.title)
-                        .bold()
-                        .frame(width: 50, height: 50)
-                        .border(Color.white)
-                        .foregroundColor(.white)
-                }
-            }
-            .frame(maxWidth: .infinity)
+            LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 0) {
+                        ForEach(0..<board.rows * board.cols, id: \.self) { index in
+                            Text("\(board.board[index / board.cols][index % board.cols])")
+                                .font(.title)
+                                .bold()
+                                .frame(width: 75, height: 75)
+                                .border(Color.white)
+                                .foregroundColor(.white)
+                        }
+                    }
             Spacer()
             Button(action: {board.scramble(); board.startTimer()}) {
                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -67,6 +63,7 @@ struct ContentView: View {
             .cornerRadius(10)
         }
         .padding()
+        .frame(maxWidth: .infinity)
         .background(Color(cTeal))
     }
     
