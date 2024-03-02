@@ -37,7 +37,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(formatTime(self.board.hunderedths))
+            Text(formatTime(self.board.hundreths))
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
