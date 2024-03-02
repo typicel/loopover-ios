@@ -23,7 +23,7 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
-let cTeal = Color(UIColor(hex: "#008073"))
+let cTeal = Color(UIColor(hex: "#002925"))
 
 struct ContentView: View {
     @ObservedObject var board = Board(5,5)
@@ -40,10 +40,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             Text(formatTime(self.board.seconds))
             LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 10) {
                 ForEach(0..<board.rows * board.cols, id: \.self) { index in
                     Text("\(board.board[index / board.cols][index % board.cols])")
+                        .font(.title)
+                        .bold()
                         .frame(width: 50, height: 50)
                         .border(Color.white)
                         .foregroundColor(.white)
