@@ -14,9 +14,10 @@ struct ContentView: View {
     @State private var lastTouched: (i: Int, j: Int)? = nil
     
     func formatTime(_ time: Int) -> String{
-        let minutes = self.board.seconds / 60
-        let seconds = self.board.seconds % 60
-        return String(format: "%02d:%02d", minutes, seconds)
+        let minutes = self.board.hundreths / 6000
+        let seconds = (self.board.hundreths / 100) % 60
+        let hundreths = self.board.hundreths % 100
+        return String(format: "%02d:%02d:%02d", minutes, seconds, hundreths)
     }
     
     func detectDrag(i: Int, j: Int, gesture: DragGesture.Value) {
@@ -36,7 +37,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text(formatTime(self.board.seconds))
+            Text(formatTime(self.board.hunderedths))
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
