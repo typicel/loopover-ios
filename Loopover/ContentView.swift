@@ -23,7 +23,7 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
-let cTeal = Color(UIColor(hex: "#007173"))
+let cTeal = Color(UIColor(hex: "#008073"))
 
 struct ContentView: View {
     @ObservedObject var board = Board(5,5)
