@@ -65,10 +65,10 @@ class Board: ObservableObject{
     }
     
     func scramble() {
-        for i in 0...self.rows * self.cols + 50 {
+        for _ in 0...self.rows * self.cols + 50 {
             let axis = Int.random(in: 1...100) >= 50 ? Axis.Col : Axis.Row
             let n = Int.random(in: 1...100)
-            let index = axis == Axis.Col ? Int.random(in: 1..<self.cols) : Int.random(in: 1..<self.rows)
+            let index = axis == Axis.Col ? Int.random(in: 0..<self.cols) : Int.random(in: 0..<self.rows)
            
             self.move(Move(axis: axis, index: index, n: n))
         }
