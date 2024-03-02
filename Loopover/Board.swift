@@ -7,6 +7,17 @@
 
 import Foundation
 
+enum Axis {
+    case Row
+    case Col
+}
+
+struct Move {
+    var axis: Axis
+    var index: Int
+    var n: Int
+}
+
 /**
  Data Model representing the loopover board. View should conform to this
  */
@@ -23,9 +34,17 @@ class Board: ObservableObject{
         for i in 0..<self.rows {
             var row = [Int]()
             for j in 0..<self.cols {
-                row.append(i * 5 + j)
+                row.append(i * 5 + j + 1)
             }
             self.board.append(row)
+        }
+    }
+    
+    func move(_ move: Move) {
+        if(move.axis == Axis.Col) {
+            self.moveRow(index: move.index, n: move.n)
+        } else {
+            self.moveColumn(index: move.index, n: move.n)
         }
     }
     
@@ -42,6 +61,16 @@ class Board: ObservableObject{
         
         for i in 0..<self.rows {
             self.board[i][index] = col[((i-n) % self.rows + self.rows) % self.rows]
+        }
+    }
+    
+    func scramble() {
+        for i in 0...self.rows * self.cols + 50 {
+            let axis = Int.random(in: 1...100) >= 50 ? Axis.Col : Axis.Row
+            let n = Int.random(in: 1...100)
+            let index = axis == Axis.Col ? Int.random(in: 1..<self.cols) : Int.random(in: 1..<self.rows)
+           
+            self.move(Move(axis: axis, index: index, n: n))
         }
     }
     
