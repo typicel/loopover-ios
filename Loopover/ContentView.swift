@@ -42,6 +42,9 @@ struct ContentView: View {
         VStack {
             Spacer()
             Text(formatTime(self.board.seconds))
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 10) {
                 ForEach(0..<board.rows * board.cols, id: \.self) { index in
                     Text("\(board.board[index / board.cols][index % board.cols])")
@@ -52,6 +55,7 @@ struct ContentView: View {
                         .foregroundColor(.white)
                 }
             }
+            .frame(maxWidth: .infinity)
             Spacer()
             Button(action: {board.scramble(); board.startTimer()}) {
                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -61,9 +65,6 @@ struct ContentView: View {
             }
             .background(Color.white)
             .cornerRadius(10)
-        }
-        .onAppear{
-            self.board.startTimer()
         }
         .padding()
         .background(Color(cTeal))
