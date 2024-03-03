@@ -87,9 +87,9 @@ class Board: ObservableObject{
     }
        
     func formatTime(_ time: Int) -> String{
-        let minutes = self.hundreths / 6000
-        let seconds = (self.hundreths / 100) % 60
-        let hundreths = self.hundreths % 100
+        let minutes = time / 6000
+        let seconds = (time / 100) % 60
+        let hundreths = time % 100
         return String(format: "%02d:%02d:%02d", minutes, seconds, hundreths)
     }
     
