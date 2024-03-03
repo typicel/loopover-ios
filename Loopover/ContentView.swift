@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var isDragging = false
     @State private var startPos: (i: Int, j: Int)? = nil
     @State private var availableSize: CGSize? = nil
+    @State private var showPopover = false
+
     
     func formatTime(_ time: Int) -> String{
         let minutes = self.board.hundreths / 6000
@@ -58,28 +60,34 @@ struct ContentView: View {
             Text("Loopover")
                 .font(.system(size: 48, weight: .heavy))
                 .frame(maxWidth: .infinity, alignment: .leading)
+            Button(action: {
+                self.showPopover = true
+            }) {
+                Text("Show Game Info")
+            }
+            
             Spacer()
             Text(formatTime(self.board.hundreths))
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-                LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
-                    ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                        let el = self.board.board[index / board.cols][index % board.cols]
-                        Box(text: String(el.num), size: boxSize, color: el.color)
-                    }
+            LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
+                ForEach(0..<board.rows * board.cols, id: \.self) { index in
+                    let el = self.board.board[index / board.cols][index % board.cols]
+                    Box(text: String(el.num), size: boxSize, color: el.color)
                 }
-                .gesture(
-                    DragGesture(minimumDistance: 0.1)
-                        .onChanged { gesture in
-                            self.detectDrag(gesture)
-                            offset = CGSize(width: gesture.translation.width, height: gesture.translation.height)
-                        }
-                        .onEnded { _ in
-                            self.isDragging = false
-                            self.startPos = nil
-                        }
-                )
+            }
+            .gesture(
+                DragGesture(minimumDistance: 0.1)
+                    .onChanged { gesture in
+                        self.detectDrag(gesture)
+                        offset = CGSize(width: gesture.translation.width, height: gesture.translation.height)
+                    }
+                    .onEnded { _ in
+                        self.isDragging = false
+                        self.startPos = nil
+                    }
+            )
             
             Spacer()
             
@@ -89,16 +97,18 @@ struct ContentView: View {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             }
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-//        .background(
-//            GeometryReader {reader in
-//                Color.clear.onAppear{
-//                    self.boxSize = reader.size.width/5
-//                }}
-//        )
-    
-    }
+        .popover(isPresented: $showPopover, arrowEdge: .top) {
+            GameInfoPopover()
+                .padding()
+                .frame(maxWidth: .infinity)
+            //        .background(
+            //            GeometryReader {reader in
+            //                Color.clear.onAppear{
+            //                    self.boxSize = reader.size.width/5
+            //                }}
+            //        )
+            
+        }}
 }
 
 
