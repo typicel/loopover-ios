@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var board = Board(5,5)
-    private var boxSize: CGFloat = 75
+    @ObservedObject var board = Board(4,4)
+    private var boxSize: CGFloat = 393/4
     private let letters = Array("ABCDEFGHJIKLMNOPQRSTUVWXYZ")
     
     @State private var offset = CGSize.zero
     @State private var isDragging = false
     @State private var startPos: (i: Int, j: Int)? = nil
+    @State private var availableSize: CGSize? = nil
     
     func formatTime(_ time: Int) -> String{
         let minutes = self.board.hundreths / 6000
@@ -62,9 +63,13 @@ struct ContentView: View {
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-                LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 0) {
+                LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
                     ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                        Box(text: String(self.letters[board.board[index / board.cols][index % board.cols]]), size: 75)
+                        let rowIndex = index / board.cols
+                        let colIndex = index % board.cols
+                        
+                        Box(text: String(self.letters[board.board[rowIndex][colIndex]]), size: boxSize)
+                            .aspectRatio(1, contentMode: .fit)
                     }
                 }
                 .gesture(
@@ -89,7 +94,13 @@ struct ContentView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color(cTeal))
+//        .background(
+//            GeometryReader {reader in
+//                Color.clear.onAppear{
+//                    self.boxSize = reader.size.width/5
+//                }}
+//        )
+    
     }
 }
 
