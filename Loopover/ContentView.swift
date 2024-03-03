@@ -30,6 +30,9 @@ struct ContentView: View {
     // Confetti
     @State private var confettiCounter = 0
     
+    // Pb
+    @State private var personalBest: String? = UserDefaults.standard.string(forKey: "5")
+    
     func performMove(_ oi: Int, _ oj: Int, _ i: Int, _ j: Int) {
         if (oi, oj) != (i, j) {
             let axis = oi != i ? Axis.Row : Axis.Col
@@ -46,6 +49,15 @@ struct ContentView: View {
                 self.freezeGestures = true
                 self.board.stopTimer()
                 confettiCounter += 1
+                
+                if let pb = UserDefaults.standard.string(forKey: "\(gridSize)") {
+                    if self.board.hundreths < Int(pb)! {
+                        UserDefaults.standard.set(self.board.hundreths, forKey: "\(gridSize)")
+                    }
+                } else {
+                    UserDefaults.standard.set(self.board.hundreths, forKey: "\(gridSize)")
+                }
+                self.personalBest = UserDefaults.standard.string(forKey: "\(gridSize)")
             }
         }
     }
@@ -74,9 +86,23 @@ struct ContentView: View {
             
             Spacer()
             HStack {
-                Text(self.board.formatTime(self.board.hundreths))
-                    .font(.title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack {
+                    Text(self.board.formatTime(self.board.hundreths))
+                        .font(.title)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if let pb = personalBest {
+                        Text("Personal Best: \(self.board.formatTime(Int(pb)!))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.caption)
+                    } else {
+                        Text("Personal Best: 00:00:00")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.caption)
+                    }
+                }
+                
+                Spacer()
                 
                 Button("\(gridSize)x\(gridSize)") {
                     selectedSize = (selectedSize + 1) % 3
@@ -87,6 +113,8 @@ struct ContentView: View {
                     self.board.stopTimer()
                     self.board.resetTimer()
                     self.freezeGestures = false
+                    
+                    self.personalBest = UserDefaults.standard.string(forKey: "\(gridSize)")
                 }
             }
             
