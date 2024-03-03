@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Axis {
     case Row
@@ -18,11 +19,16 @@ struct Move {
     var n: Int
 }
 
+struct Element {
+    var num: Int
+    var color: Color
+}
+
 /**
  Data Model representing the loopover board. View should conform to this
  */
 class Board: ObservableObject{
-    @Published var board: [[Int]]
+    @Published var board: [[Element]]
     @Published var hundreths: Int
     private var timer: Timer?
     var rows: Int
@@ -31,14 +37,22 @@ class Board: ObservableObject{
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows;
         self.cols = cols
-        self.board = [[Int]]()
+        self.board = [[Element]]()
         self.hundreths = 0
         self.timer = nil
         
+        let dc = Double(self.cols)
+        let dr = Double(self.rows)
+        
         for i in 0..<self.rows {
-            var row = [Int]()
+            var row = [Element]()
             for j in 0..<self.cols {
-                row.append(i * self.rows + j)
+                let val: Double = Double(i * self.rows + j)
+                
+                let cx: Double = (val.truncatingRemainder(dividingBy: dc)) / (dc - 1.0)
+                let cy: Double = (val / dc) / (dr - 1.0)
+                
+                row.append(Element(num: Int(val), color: Color(red: 1.0-cx, green: cy, blue: cx)))
             }
             self.board.append(row)
         }
@@ -93,7 +107,7 @@ class Board: ObservableObject{
     
     func isSolved() -> Bool{
         for i in 0..<self.rows * self.cols {
-            if self.board[i/self.cols][i%self.cols] != i {
+            if self.board[i/self.cols][i%self.cols].num != i {
                 return false
             }
         }
