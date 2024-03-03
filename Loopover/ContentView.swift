@@ -5,23 +5,45 @@
 //  Created by Tyler McCormick on 3/2/24.
 //
 
+import ConfettiSwiftUI
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var board = Board(4,4)
-    private var boxSize: CGFloat = 393/4
     private let letters = Array("ABCDEFGHJIKLMNOPQRSTUVWXYZ")
+    private let sizes = [3, 4, 5]
     
-    @State private var offset = CGSize.zero
+    @StateObject var board = Board(5, 5)
+    
+    // Dragging
+    @State private var availableSpace: CGFloat = 393.0
+    @State private var boxSize: CGFloat = 393.0/5.0
     @State private var isDragging = false
     @State private var startPos: (i: Int, j: Int)? = nil
-    @State private var availableSize: CGSize? = nil
     
-    func formatTime(_ time: Int) -> String{
-        let minutes = self.board.hundreths / 6000
-        let seconds = (self.board.hundreths / 100) % 60
-        let hundreths = self.board.hundreths % 100
-        return String(format: "%02d:%02d:%02d", minutes, seconds, hundreths)
+    // Num rows/cols
+    @State private var gridSize = 5
+    @State private var selectedSize = 2
+    
+    // Confetti
+    @State private var confettiCounter = 0
+    
+    func performMove(_ oi: Int, _ oj: Int, _ i: Int, _ j: Int) {
+        if (oi, oj) != (i, j) {
+            let axis = oi != i ? Axis.Row : Axis.Col
+            let index = axis == Axis.Row ? oj : oi
+            let n = axis == Axis.Row ? i - oi : j - oj
+            
+            guard index >= 0 && index < self.board.rows else { return }
+            
+            board.move(Move(axis: axis, index: index, n: n))
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            startPos = (i, j)
+            
+            if(board.isSolved()) {
+                self.board.stopTimer()
+                confettiCounter += 1
+            }
+        }
     }
     
     func detectDrag(_ gesture: DragGesture.Value) {
@@ -34,21 +56,7 @@ struct ContentView: View {
             startPos = (i, j)
         } else {
             if let (oi, oj) = startPos {
-                if (oi, oj) != (i, j) {
-                    let axis = oi != i ? Axis.Row : Axis.Col
-                    let index = axis == Axis.Row ? oj : oi
-                    let n = axis == Axis.Row ? i - oi : j - oj
-                    
-                    guard index >= 0 && index < self.board.rows else { return }
-                    
-                    board.move(Move(axis: axis, index: index, n: n))
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    startPos = (i, j)
-                    
-                    if(board.isSolved()) {
-                        self.board.stopTimer()
-                    }
-                }
+                performMove(oi, oj, i, j)
             }
         }
     }
@@ -59,27 +67,43 @@ struct ContentView: View {
                 .font(.system(size: 48, weight: .heavy))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            Text(formatTime(self.board.hundreths))
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-                LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
-                    ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                        let el = self.board.board[index / board.cols][index % board.cols]
-                        Box(text: String(el.num), size: boxSize, color: el.color)
-                    }
+            HStack {
+                Text(self.board.formatTime(self.board.hundreths))
+                    .font(.title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Button("\(gridSize)x\(gridSize)") {
+                    selectedSize = (selectedSize + 1) % 3
+                    gridSize = sizes[selectedSize]
+                    self.boxSize = availableSpace / CGFloat(gridSize)
+                    print(boxSize)
+                    
+                    self.board.resize(gridSize)
                 }
-                .gesture(
-                    DragGesture(minimumDistance: 0.1)
-                        .onChanged { gesture in
-                            self.detectDrag(gesture)
-                            offset = CGSize(width: gesture.translation.width, height: gesture.translation.height)
-                        }
-                        .onEnded { _ in
-                            self.isDragging = false
-                            self.startPos = nil
-                        }
+            }
+            
+            LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
+                ForEach(0..<board.rows * board.cols, id: \.self) { index in
+                    let el = self.board.board[index / board.cols][index % board.cols]
+                    Box(text: String(self.letters[el.num]), size: boxSize, color: el.color)
+                }
+            }
+            .gesture(
+                DragGesture(minimumDistance: 0.1)
+                    .onChanged { gesture in
+                        self.detectDrag(gesture)
+                    }
+                    .onEnded { _ in
+                        self.isDragging = false
+                        self.startPos = nil
+                    }
                 )
+            .background( // to get the grid width
+                GeometryReader { reader in
+                    Color.red.onAppear{
+                        self.availableSpace = reader.size.width + 10.0
+                    }}
+            )
             
             Spacer()
             
@@ -91,12 +115,7 @@ struct ContentView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-//        .background(
-//            GeometryReader {reader in
-//                Color.clear.onAppear{
-//                    self.boxSize = reader.size.width/5
-//                }}
-//        )
+        .confettiCannon(counter: $confettiCounter, num: 100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
     
     }
 }
