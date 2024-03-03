@@ -45,7 +45,6 @@ struct ContentView: View {
                     startPos = (i, j)
                     
                     if(board.isSolved()) {
-                        print("Yay!")
                         self.board.stopTimer()
                     }
                 }
@@ -56,7 +55,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Loopover")
-                .font(.title)
+                .font(.system(size: 48, weight: .heavy))
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
             Text(formatTime(self.board.hundreths))
                 .font(.title)
@@ -64,7 +64,8 @@ struct ContentView: View {
             
                 LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 0) {
                     ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                        Box(text: String(self.letters[board.board[index / board.cols][index % board.cols]]), size: 75)
+                        let el = self.board.board[index / board.cols][index % board.cols]
+                        Box(text: String(el.num), size: boxSize, color: el.color)
                     }
                 }
                 .gesture(
@@ -89,7 +90,6 @@ struct ContentView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color(cTeal))
     }
 }
 
