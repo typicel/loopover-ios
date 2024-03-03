@@ -9,7 +9,7 @@ import ConfettiSwiftUI
 import SwiftUI
 
 struct ContentView: View {
-    private let letters = Array("ABCDEFGHJIKLMNOPQRSTUVWXYZ")
+    private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     private let sizes = [3, 4, 5]
     
     @StateObject var board = Board(5, 5)
@@ -79,9 +79,11 @@ struct ContentView: View {
                 Button("\(gridSize)x\(gridSize)") {
                     selectedSize = (selectedSize + 1) % 3
                     gridSize = sizes[selectedSize]
+                    
                     self.boxSize = availableSpace / CGFloat(gridSize)
-                    print(boxSize)
                     self.board.resize(gridSize)
+                    self.board.stopTimer()
+                    self.board.resetTimer()
                 }
             }
             
@@ -106,7 +108,6 @@ struct ContentView: View {
                     Color.clear.onAppear{
                         self.availableSpace = reader.size.width + 10.0
                         self.boxSize = availableSpace / CGFloat(gridSize)
-                        print(boxSize)
                         self.board.resize(gridSize)
                     }}
             )
