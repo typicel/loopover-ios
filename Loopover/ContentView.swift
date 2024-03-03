@@ -21,7 +21,7 @@ struct ContentView: View {
     @State private var startPos: (i: Int, j: Int)? = nil
     @State private var availableSize: CGSize? = nil
     @State private var showPopover = false
-
+    @State private var freezeGestures = false
     
     // Num rows/cols
     @State private var gridSize = 5
@@ -42,7 +42,8 @@ struct ContentView: View {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
             startPos = (i, j)
             
-            if(board.isSolved()) {
+            if(board.isSolved() && self.board.hundreths > 0) {
+                self.freezeGestures = true
                 self.board.stopTimer()
                 confettiCounter += 1
             }
@@ -50,6 +51,7 @@ struct ContentView: View {
     }
     
     func detectDrag(_ gesture: DragGesture.Value) {
+        if freezeGestures == true { return }
         let location = gesture.location
         let i = Int(location.y / boxSize)
         let j = Int(location.x / boxSize)
@@ -84,6 +86,7 @@ struct ContentView: View {
                     self.board.resize(gridSize)
                     self.board.stopTimer()
                     self.board.resetTimer()
+                    self.freezeGestures = false
                 }
             }
             
@@ -116,8 +119,11 @@ struct ContentView: View {
                     board.scramble()
                     board.startTimer()
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    self.freezeGestures = false
                 }.padding()
+                
                 Spacer()
+                
                 Button("", systemImage: "info.circle", action: {self.showPopover = true})
                     .popover(isPresented: $showPopover, arrowEdge: .top){
                         GameInfoPopover()
