@@ -34,7 +34,6 @@ struct ContentView: View {
         } else {
             if let (oi, oj) = startPos {
                 if (oi, oj) != (i, j) {
-                    
                     let axis = oi != i ? Axis.Row : Axis.Col
                     let index = axis == Axis.Row ? oj : oi
                     let n = axis == Axis.Row ? i - oi : j - oj
@@ -44,6 +43,11 @@ struct ContentView: View {
                     board.move(Move(axis: axis, index: index, n: n))
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     startPos = (i, j)
+                    
+                    if(board.isSolved()) {
+                        print("Yay!")
+                        self.board.stopTimer()
+                    }
                 }
             }
         }

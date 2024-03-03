@@ -38,7 +38,7 @@ class Board: ObservableObject{
         for i in 0..<self.rows {
             var row = [Int]()
             for j in 0..<self.cols {
-                row.append(i * 5 + j)
+                row.append(i * self.rows + j)
             }
             self.board.append(row)
         }
@@ -50,6 +50,11 @@ class Board: ObservableObject{
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
             self.hundreths += 1
         }
+    }
+    
+    func stopTimer() {
+        self.timer?.invalidate()
+        timer = nil
     }
     
     func move(_ move: Move) {
@@ -84,6 +89,15 @@ class Board: ObservableObject{
            
             self.move(Move(axis: axis, index: index, n: n))
         }
+    }
+    
+    func isSolved() -> Bool{
+        for i in 0..<self.rows * self.cols {
+            if self.board[i/self.cols][i%self.cols] != i {
+                return false
+            }
+        }
+        return true
     }
     
     func printBoard() {
