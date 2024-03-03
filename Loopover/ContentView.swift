@@ -103,7 +103,7 @@ struct ContentView: View {
             )
             .background( // to get the grid width
                 GeometryReader { reader in
-                    Color.red.onAppear{
+                    Color.clear.onAppear{
                         self.availableSpace = reader.size.width + 10.0
                         self.boxSize = availableSpace / CGFloat(gridSize)
                         print(boxSize)
@@ -115,11 +115,16 @@ struct ContentView: View {
                     board.scramble()
                     board.startTimer()
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                }
+                }.padding()
                 Spacer()
-                Button(action: {self.showPopover = true}) {
-                    Text("Show Game Info")
-                }
+                Button("", systemImage: "info.circle", action: {self.showPopover = true})
+                    .popover(isPresented: $showPopover, arrowEdge: .top){
+                        GameInfoPopover()
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding()
+                
             }
             Spacer()
 
@@ -127,11 +132,7 @@ struct ContentView: View {
         .padding()
         .frame(maxWidth: .infinity)
         .confettiCannon(counter: $confettiCounter, num: 100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
-        .popover(isPresented: $showPopover, arrowEdge: .top) {
-            GameInfoPopover()
-                .padding()
-                .frame(maxWidth: .infinity)
-        }
+        
     }
 }
 
