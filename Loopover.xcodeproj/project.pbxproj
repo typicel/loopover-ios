@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401A66222B94694100D40FC2 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* Info.swift */; };
 		C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1692B9399A800E230F4 /* LoopoverApp.swift */; };
 		C680A16C2B9399A800E230F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A16B2B9399A800E230F4 /* ContentView.swift */; };
 		C680A16E2B9399AA00E230F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C680A16D2B9399AA00E230F4 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		401A66212B94694100D40FC2 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		C680A1662B9399A800E230F4 /* Loopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680A1692B9399A800E230F4 /* LoopoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopoverApp.swift; sourceTree = "<group>"; };
 		C680A16B2B9399A800E230F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				C680A1772B93A4F800E230F4 /* Board.swift */,
 				C680A1792B93DB2700E230F4 /* Color.swift */,
 				C680A17B2B93FE8900E230F4 /* Box.swift */,
+				401A66212B94694100D40FC2 /* Info.swift */,
 			);
 			path = Loopover;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			files = (
 				C680A16C2B9399A800E230F4 /* ContentView.swift in Sources */,
 				C680A17A2B93DB2700E230F4 /* Color.swift in Sources */,
+				401A66222B94694100D40FC2 /* Info.swift in Sources */,
 				C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */,
 				C680A1782B93A4F800E230F4 /* Board.swift in Sources */,
 				C680A17C2B93FE8900E230F4 /* Box.swift in Sources */,

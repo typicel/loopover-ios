@@ -81,6 +81,10 @@ class Board: ObservableObject{
         self.timer?.invalidate()
         timer = nil
     }
+    
+    func resetTimer() {
+        self.hundreths = 0
+    }
        
     func formatTime(_ time: Int) -> String{
         let minutes = self.hundreths / 6000

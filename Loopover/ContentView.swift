@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var boxSize: CGFloat = 393.0/5.0
     @State private var isDragging = false
     @State private var startPos: (i: Int, j: Int)? = nil
+    @State private var availableSize: CGSize? = nil
+    @State private var showPopover = false
+
     
     // Num rows/cols
     @State private var gridSize = 5
@@ -66,6 +69,7 @@ struct ContentView: View {
             Text("Loopover")
                 .font(.system(size: 48, weight: .heavy))
                 .frame(maxWidth: .infinity, alignment: .leading)
+            
             Spacer()
             HStack {
                 Text(self.board.formatTime(self.board.hundreths))
@@ -77,7 +81,6 @@ struct ContentView: View {
                     gridSize = sizes[selectedSize]
                     self.boxSize = availableSpace / CGFloat(gridSize)
                     print(boxSize)
-                    
                     self.board.resize(gridSize)
                 }
             }
@@ -97,26 +100,39 @@ struct ContentView: View {
                         self.isDragging = false
                         self.startPos = nil
                     }
-                )
+            )
             .background( // to get the grid width
                 GeometryReader { reader in
-                    Color.red.onAppear{
+                    Color.clear.onAppear{
                         self.availableSpace = reader.size.width + 10.0
+                        self.boxSize = availableSpace / CGFloat(gridSize)
+                        print(boxSize)
+                        self.board.resize(gridSize)
                     }}
             )
-            
-            Spacer()
-            
-            Button("", systemImage: "arrow.triangle.2.circlepath") {
-                board.scramble()
-                board.startTimer()
-                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            HStack{
+                Button("", systemImage: "arrow.triangle.2.circlepath") {
+                    board.scramble()
+                    board.startTimer()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                }.padding()
+                Spacer()
+                Button("", systemImage: "info.circle", action: {self.showPopover = true})
+                    .popover(isPresented: $showPopover, arrowEdge: .top){
+                        GameInfoPopover()
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding()
+                
             }
+            Spacer()
+
         }
         .padding()
         .frame(maxWidth: .infinity)
         .confettiCannon(counter: $confettiCounter, num: 100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
-    
+        
     }
 }
 
