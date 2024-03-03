@@ -86,7 +86,6 @@ struct ContentView: View {
                     gridSize = sizes[selectedSize]
                     self.boxSize = availableSpace / CGFloat(gridSize)
                     print(boxSize)
-                    
                     self.board.resize(gridSize)
                 }
             }
@@ -111,6 +110,9 @@ struct ContentView: View {
                 GeometryReader { reader in
                     Color.red.onAppear{
                         self.availableSpace = reader.size.width + 10.0
+                        self.boxSize = availableSpace / CGFloat(gridSize)
+                        print(boxSize)
+                        self.board.resize(gridSize)
                     }}
             )
             
@@ -125,19 +127,10 @@ struct ContentView: View {
         .padding()
         .frame(maxWidth: .infinity)
         .confettiCannon(counter: $confettiCounter, num: 100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
-    
-    }
         .popover(isPresented: $showPopover, arrowEdge: .top) {
             GameInfoPopover()
                 .padding()
                 .frame(maxWidth: .infinity)
-            //        .background(
-            //            GeometryReader {reader in
-            //                Color.clear.onAppear{
-            //                    self.boxSize = reader.size.width/5
-            //                }}
-            //        )
-            
         }}
 }
 
