@@ -41,6 +41,10 @@ class Board: ObservableObject{
         self.hundreths = 0
         self.timer = nil
         
+        self.createBoard(rows, cols)
+    }
+    
+    private func createBoard(_ rows: Int, _ cols: Int) {
         let dc = Double(self.cols)
         let dr = Double(self.rows)
         
@@ -58,6 +62,13 @@ class Board: ObservableObject{
         }
     }
     
+    func resize(_ size: Int) {
+        self.rows = size
+        self.cols = size
+        self.board = [[Element]]()
+        self.createBoard(size, size)
+    }
+    
     func startTimer() {
         timer?.invalidate()
         self.hundreths = 0
@@ -69,6 +80,13 @@ class Board: ObservableObject{
     func stopTimer() {
         self.timer?.invalidate()
         timer = nil
+    }
+       
+    func formatTime(_ time: Int) -> String{
+        let minutes = self.hundreths / 6000
+        let seconds = (self.hundreths / 100) % 60
+        let hundreths = self.hundreths % 100
+        return String(format: "%02d:%02d:%02d", minutes, seconds, hundreths)
     }
     
     func move(_ move: Move) {
