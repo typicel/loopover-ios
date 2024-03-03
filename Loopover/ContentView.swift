@@ -38,8 +38,10 @@ struct ContentView: View {
                     let axis = oi != i ? Axis.Row : Axis.Col
                     let index = axis == Axis.Row ? oj : oi
                     let n = axis == Axis.Row ? i - oi : j - oj
-                    board.move(Move(axis: axis, index: index, n: n))
                     
+                    guard index >= 0 && index < self.board.rows else { return }
+                    
+                    board.move(Move(axis: axis, index: index, n: n))
                     startPos = (i, j)
                 }
             }
