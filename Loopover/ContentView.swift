@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    private let sizes = [3, 4, 5]
+    private let sizes = [3, 4, 5, 6]
     
     @StateObject var board = Board(5, 5)
     
@@ -21,7 +21,6 @@ struct ContentView: View {
     @State private var isDragging = false
     @State private var startPos: (i: Int, j: Int)? = nil
     @State private var availableSize: CGSize? = nil
-    @State private var engine: CHHapticEngine?
     @State private var showPopover = false
     @State private var freezeGestures = false
     
@@ -29,8 +28,9 @@ struct ContentView: View {
     @State private var gridSize = 5
     @State private var selectedSize = 2
     
-    // Confetti
+    // Confetti and Haptics
     @State private var confettiCounter = 0
+    @State private var engine: CHHapticEngine?
     
     // Pb
     @State private var personalBest: String? = UserDefaults.standard.string(forKey: "5")
@@ -141,7 +141,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button("\(gridSize)x\(gridSize)") {
-                    selectedSize = (selectedSize + 1) % 3
+                    selectedSize = (selectedSize + 1) % sizes.count
                     gridSize = sizes[selectedSize]
                     
                     self.boxSize = availableSpace / CGFloat(gridSize)
@@ -152,12 +152,18 @@ struct ContentView: View {
                     
                     self.personalBest = UserDefaults.standard.string(forKey: "\(gridSize)")
                 }
+                .frame(alignment: .bottom)
             }
             
             LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
                 ForEach(0..<board.rows * board.cols, id: \.self) { index in
                     let el = self.board.board[index / board.cols][index % board.cols]
-                    Box(text: String(self.letters[el.num]), size: boxSize, color: el.color)
+                    if gridSize <= 5 {
+                        Box(text: String(self.letters[el.num]), size: boxSize, color: el.color)
+                    }
+                    else {
+                        Box(text: String(el.num+1), size: boxSize, color: el.color)
+                    }
                 }
             }
             .gesture(
