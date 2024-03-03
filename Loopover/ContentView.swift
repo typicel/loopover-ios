@@ -69,11 +69,6 @@ struct ContentView: View {
             Text("Loopover")
                 .font(.system(size: 48, weight: .heavy))
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button(action: {
-                self.showPopover = true
-            }) {
-                Text("Show Game Info")
-            }
             
             Spacer()
             HStack {
@@ -105,7 +100,7 @@ struct ContentView: View {
                         self.isDragging = false
                         self.startPos = nil
                     }
-                )
+            )
             .background( // to get the grid width
                 GeometryReader { reader in
                     Color.red.onAppear{
@@ -115,14 +110,19 @@ struct ContentView: View {
                         self.board.resize(gridSize)
                     }}
             )
-            
-            Spacer()
-            
-            Button("", systemImage: "arrow.triangle.2.circlepath") {
-                board.scramble()
-                board.startTimer()
-                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            HStack{
+                Button("", systemImage: "arrow.triangle.2.circlepath") {
+                    board.scramble()
+                    board.startTimer()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                }
+                Spacer()
+                Button(action: {self.showPopover = true}) {
+                    Text("Show Game Info")
+                }
             }
+            Spacer()
+
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -131,7 +131,8 @@ struct ContentView: View {
             GameInfoPopover()
                 .padding()
                 .frame(maxWidth: .infinity)
-        }}
+        }
+    }
 }
 
 
