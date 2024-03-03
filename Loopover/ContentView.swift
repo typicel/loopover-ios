@@ -42,6 +42,7 @@ struct ContentView: View {
                     guard index >= 0 && index < self.board.rows else { return }
                     
                     board.move(Move(axis: axis, index: index, n: n))
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     startPos = (i, j)
                 }
             }
@@ -50,6 +51,8 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text("Loopover")
+                .font(.title)
             Spacer()
             Text(formatTime(self.board.hundreths))
                 .font(.title)
@@ -57,37 +60,28 @@ struct ContentView: View {
             
                 LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: 0) {
                     ForEach(0..<board.rows * board.cols, id: \.self) { index in
-                        Text(String(self.letters[board.board[index / board.cols][index % board.cols]]))
-                            .font(.title)
-                            .bold()
-                            .frame(width: boxSize, height: boxSize)
-                            .border(Color.white)
-                            .foregroundColor(.white)
+                        Box(text: String(self.letters[board.board[index / board.cols][index % board.cols]]), size: 75)
                     }
-                    
                 }
                 .gesture(
                     DragGesture(minimumDistance: 0.1)
                         .onChanged { gesture in
                             self.detectDrag(gesture)
+                            offset = CGSize(width: gesture.translation.width, height: gesture.translation.height)
                         }
                         .onEnded { _ in
                             self.isDragging = false
                             self.startPos = nil
-                            self.board.printBoard()
                         }
                 )
             
             Spacer()
             
-            Button(action: {board.scramble(); board.startTimer()}) {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .padding()
-                    .font(.title)
-                    .foregroundColor(.teal)
+            Button("", systemImage: "arrow.triangle.2.circlepath") {
+                board.scramble()
+                board.startTimer()
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             }
-            .background(Color.white)
-            .cornerRadius(10)
         }
         .padding()
         .frame(maxWidth: .infinity)
