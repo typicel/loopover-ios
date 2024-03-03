@@ -38,7 +38,7 @@ class Board: ObservableObject{
         for i in 0..<self.rows {
             var row = [Int]()
             for j in 0..<self.cols {
-                row.append(i * 5 + j + 1)
+                row.append(i * 5 + j)
             }
             self.board.append(row)
         }
@@ -60,16 +60,16 @@ class Board: ObservableObject{
         }
     }
     
-    func moveRow(index: Int, n: Int) {
+    private func moveRow(index: Int, n: Int) {
         let row = self.board[index]
         
         self.board[index] = row.enumerated().map { (i, element) in
-            row[((i-n) % self.cols + self.cols) % self.cols]
+            row[((i - n) % self.cols + self.cols) % self.cols]
         }
     }
     
-    func moveColumn(index: Int, n: Int) {
-        let col = (0..<self.rows).map( { i in self.board[i][index]})
+    private func moveColumn(index: Int, n: Int) {
+        let col = (0..<self.rows).map { i in self.board[i][index]}
         
         for i in 0..<self.rows {
             self.board[i][index] = col[((i-n) % self.rows + self.rows) % self.rows]
