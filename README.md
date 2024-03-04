@@ -12,7 +12,7 @@ Loopover is a challenging 2D Rubix Cube style puzzle game. The goal of the game 
 </div>
 
 ## Attribution
-Loopover is a recreation of Cary Huang's [Loopover](https://openprocessing.org/sketch/580366/) written in Processing. We wanted to take the amazing concept of this game and make it more mobile friendly with native swipe gestures, using local storage to save user's best scores, and allowing for offline play. Please check out the original!
+Loopover is a recreation of carykh's [Loopover](https://openprocessing.org/sketch/580366/) written in Processing. We wanted to take the amazing concept of this game and make it more mobile friendly with native swipe gestures, using local storage to save user's best scores, and allowing for offline play. Please check out the original!
 
 [ConfettiSwiftUI](https://github.com/simibac/ConfettiSwiftUI) by simibac
 
