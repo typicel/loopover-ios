@@ -4,8 +4,8 @@ Loopover is a challenging 2D Rubix Cube style puzzle game. The goal of the game 
 
 <div style="display: flex; align-items: center; justify-content: center">
   <img src="images/iphonedark2.png" width=250>
-  <img src="images/iphonelight.png" width=250>
-  <img src="images/iphonedark.png" width=250>
+  <!-- <img src="images/iphonelight.png" width=250>
+  <img src="images/iphonedark.png" width=250> -->
 </div>
 
 ## Attribution
