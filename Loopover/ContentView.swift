@@ -113,14 +113,11 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Loopover")
-                .font(.system(size: 48, weight: .heavy))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.primary)
-            
             Spacer()
             
             HStack {
+                
+                // PB Timer
                 VStack {
                     Text(self.board.formatTime(self.board.hundreths))
                         .font(.title)
@@ -135,10 +132,11 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.caption)
                     }
-                }
+                } // VStack
                 
                 Spacer()
                 
+                // Grid Size Button
                 Button("\(settings.gridSize)x\(settings.gridSize)") {
                     selectedSizeIdx = (selectedSizeIdx + 1) % sizes.count
                     settings.gridSize = sizes[selectedSizeIdx]
@@ -148,21 +146,22 @@ struct ContentView: View {
                     self.resetBoard()
                     
                     self.personalBest = UserDefaults.standard.string(forKey: "\(settings.gridSize)")
-                }
+                } // Button
                 .frame(alignment: .bottom)
-            }
+                .buttonStyle(.bordered)
+            } // HStack
             
             LazyVGrid(columns: Array(repeating: GridItem(), count: board.cols), spacing: -1) {
                 ForEach(0..<board.rows * board.cols, id: \.self) { index in
                     let el = self.board.board[index / board.cols][index % board.cols]
                     if (settings.gridSize <= 5 && settings.showNumbersOnly == false){
                         Box(text: String(letters[el.num]), size: boxSize, color: el.color)
-                    }
+                    } // endif
                     else {
                         Box(text: String(el.num+1), size: boxSize, color: el.color)
                     }
-                }
-            }
+                } // ForEach
+            } // LazyVGrid
             .gesture(
                 DragGesture(minimumDistance: 0.1)
                     .onChanged { gesture in
@@ -179,27 +178,32 @@ struct ContentView: View {
                         self.availableSpace = reader.size.width + 10.0
                         self.boxSize = availableSpace / CGFloat(settings.gridSize)
                         self.board.resize(settings.gridSize)
-                    }}
+                    } // onAppear
+                } // GeometryReader
             )
             HStack{
-                Button("", systemImage: "arrow.triangle.2.circlepath") {
-                    board.scramble()
-                    self.resetBoard()
-                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                }.padding()
                 
-                Spacer()
                 
+                // Info Button
                 Button("", systemImage: "info.circle", action: {self.showPopover = true})
                     .popover(isPresented: $showPopover, arrowEdge: .top){
                         GameInfoPopover()
                             .padding()
                             .frame(maxWidth: .infinity)
                             .environmentObject(settings)
-                    }
+                    } // Button
                     .padding()
                 
-            }
+                Spacer()
+
+                // Scramble Button
+                Button("", systemImage: "arrow.triangle.2.circlepath") {
+                    board.scramble()
+                    self.resetBoard()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                }.padding()
+
+            } // HStack
             Spacer()
 
         }
