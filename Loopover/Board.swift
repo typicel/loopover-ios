@@ -24,9 +24,7 @@ struct Element {
     var color: Color
 }
 
-/**
- Data Model representing the loopover board. View should conform to this
- */
+/// Data Model representing the loopover board. View should conform to this
 class Board: ObservableObject{
     @Published var board: [[Element]]
     @Published var hundreths: Int
@@ -62,6 +60,9 @@ class Board: ObservableObject{
         }
     }
     
+    /// Convert board to be of size (size x size)
+    /// - Parameters:
+    ///     - size: Number of rows and columns the board should have (only 3, 4, 5, 6, and 7)
     func resize(_ size: Int) {
         self.rows = size
         self.cols = size
@@ -85,7 +86,31 @@ class Board: ObservableObject{
     func resetTimer() {
         self.hundreths = 0
     }
-       
+    
+    /// Performs a random number of random movements to scramble the board
+    func scramble() {
+        for _ in 0...self.rows * self.cols + 50 {
+            let axis = Int.random(in: 1...100) >= 50 ? Axis.Col : Axis.Row
+            let n = Int.random(in: 1...100)
+            let index = axis == Axis.Col ? Int.random(in: 0..<self.cols) : Int.random(in: 0..<self.rows)
+           
+            self.move(Move(axis: axis, index: index, n: n))
+        }
+    }
+    
+    /// Determines if the board is in a solved state
+    func isSolved() -> Bool{
+        for i in 0..<self.rows * self.cols {
+            if self.board[i/self.cols][i%self.cols].num != i {
+                return false
+            }
+        }
+        return true
+    }
+
+    /// Helper function to format a time into minutes, seconds, and hundreths of seconds
+    /// - Parameters
+    ///     - time: The time in milliseconds
     func formatTime(_ time: Int) -> String{
         let minutes = time / 6000
         let seconds = (time / 100) % 60
@@ -93,6 +118,9 @@ class Board: ObservableObject{
         return String(format: "%02d:%02d:%02d", minutes, seconds, hundreths)
     }
     
+    /// Performs a sliding move on the model board
+    /// - Parameters:
+    ///     - move: A struct representing how much to move, and on what axis
     func move(_ move: Move) {
         if(move.axis == Axis.Col) {
             self.moveRow(index: move.index, n: move.n)
@@ -117,28 +145,11 @@ class Board: ObservableObject{
         }
     }
     
-    func scramble() {
-        for _ in 0...self.rows * self.cols + 50 {
-            let axis = Int.random(in: 1...100) >= 50 ? Axis.Col : Axis.Row
-            let n = Int.random(in: 1...100)
-            let index = axis == Axis.Col ? Int.random(in: 0..<self.cols) : Int.random(in: 0..<self.rows)
-           
-            self.move(Move(axis: axis, index: index, n: n))
-        }
-    }
-    
-    func isSolved() -> Bool{
-        for i in 0..<self.rows * self.cols {
-            if self.board[i/self.cols][i%self.cols].num != i {
-                return false
-            }
-        }
-        return true
-    }
-    
+    #if DEBUG
     func printBoard() {
         for row in self.board {
             print(row)
         }
     }
+    #endif
 }

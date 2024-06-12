@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		401A66222B94694100D40FC2 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* Info.swift */; };
+		401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* GameInfoPopover.swift */; };
 		C65AF4DE2B967F92008C3FDD /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AF4DD2B967F92008C3FDD /* Haptics.swift */; };
 		C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1692B9399A800E230F4 /* LoopoverApp.swift */; };
 		C680A16C2B9399A800E230F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A16B2B9399A800E230F4 /* ContentView.swift */; };
@@ -17,10 +17,27 @@
 		C680A17A2B93DB2700E230F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1792B93DB2700E230F4 /* Color.swift */; };
 		C680A17C2B93FE8900E230F4 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A17B2B93FE8900E230F4 /* Box.swift */; };
 		C6B2E47E2B945D7F00A1FC8B /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C6B2E47D2B945D7F00A1FC8B /* ConfettiSwiftUI */; };
+		C6BEFAE82C18D73400BC1458 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEFAE72C18D73400BC1458 /* AboutView.swift */; };
+		C6BEFAEA2C18DB9200BC1458 /* LicensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEFAE92C18DB9200BC1458 /* LicensesView.swift */; };
+		C6DF78BA2C179C0B0061DCE2 /* LoopoverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF78B92C179C0B0061DCE2 /* LoopoverUITests.swift */; };
+		C6DF78C12C179C6D0061DCE2 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF78C02C179C6D0061DCE2 /* BoardTests.swift */; };
+		C6DF78C52C17A45D0061DCE2 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF78C42C17A45D0061DCE2 /* HowToPlayView.swift */; };
+		C6E8F6972BFAD0BC005CFC50 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E8F6962BFAD0BC005CFC50 /* GameView.swift */; };
+		C6E8F6992BFAD0E9005CFC50 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E8F6982BFAD0E9005CFC50 /* GameSettings.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C6DF78BB2C179C0B0061DCE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C680A15E2B9399A800E230F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C680A1652B9399A800E230F4;
+			remoteInfo = Loopover;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		401A66212B94694100D40FC2 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		401A66212B94694100D40FC2 /* GameInfoPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoPopover.swift; sourceTree = "<group>"; };
 		C65AF4DD2B967F92008C3FDD /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		C680A1662B9399A800E230F4 /* Loopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680A1692B9399A800E230F4 /* LoopoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopoverApp.swift; sourceTree = "<group>"; };
@@ -30,6 +47,15 @@
 		C680A1772B93A4F800E230F4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		C680A1792B93DB2700E230F4 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C680A17B2B93FE8900E230F4 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		C6BEFAE72C18D73400BC1458 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C6BEFAE92C18DB9200BC1458 /* LicensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesView.swift; sourceTree = "<group>"; };
+		C6DF78B72C179C0B0061DCE2 /* LoopoverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoopoverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6DF78B92C179C0B0061DCE2 /* LoopoverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopoverUITests.swift; sourceTree = "<group>"; };
+		C6DF78C02C179C6D0061DCE2 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
+		C6DF78C42C17A45D0061DCE2 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		C6DF78C62C17F45B0061DCE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C6E8F6962BFAD0BC005CFC50 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		C6E8F6982BFAD0E9005CFC50 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +67,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6DF78B42C179C0B0061DCE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -48,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				C680A1682B9399A800E230F4 /* Loopover */,
+				C6DF78B82C179C0B0061DCE2 /* LoopoverUITests */,
 				C680A1672B9399A800E230F4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				C680A1662B9399A800E230F4 /* Loopover.app */,
+				C6DF78B72C179C0B0061DCE2 /* LoopoverUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,15 +98,21 @@
 		C680A1682B9399A800E230F4 /* Loopover */ = {
 			isa = PBXGroup;
 			children = (
-				C680A1692B9399A800E230F4 /* LoopoverApp.swift */,
+				C6DF78C62C17F45B0061DCE2 /* Info.plist */,
+				C6DF78C42C17A45D0061DCE2 /* HowToPlayView.swift */,
+				C6E8F6962BFAD0BC005CFC50 /* GameView.swift */,
 				C680A16B2B9399A800E230F4 /* ContentView.swift */,
-				C680A16D2B9399AA00E230F4 /* Assets.xcassets */,
-				C680A16F2B9399AA00E230F4 /* Preview Content */,
 				C680A1772B93A4F800E230F4 /* Board.swift */,
 				C680A1792B93DB2700E230F4 /* Color.swift */,
-				C680A17B2B93FE8900E230F4 /* Box.swift */,
-				401A66212B94694100D40FC2 /* Info.swift */,
+				401A66212B94694100D40FC2 /* GameInfoPopover.swift */,
 				C65AF4DD2B967F92008C3FDD /* Haptics.swift */,
+				C6E8F6982BFAD0E9005CFC50 /* GameSettings.swift */,
+				C680A17B2B93FE8900E230F4 /* Box.swift */,
+				C6BEFAE72C18D73400BC1458 /* AboutView.swift */,
+				C6BEFAE92C18DB9200BC1458 /* LicensesView.swift */,
+				C680A1692B9399A800E230F4 /* LoopoverApp.swift */,
+				C680A16D2B9399AA00E230F4 /* Assets.xcassets */,
+				C680A16F2B9399AA00E230F4 /* Preview Content */,
 			);
 			path = Loopover;
 			sourceTree = "<group>";
@@ -82,6 +123,15 @@
 				C680A1702B9399AA00E230F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C6DF78B82C179C0B0061DCE2 /* LoopoverUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C6DF78B92C179C0B0061DCE2 /* LoopoverUITests.swift */,
+				C6DF78C02C179C6D0061DCE2 /* BoardTests.swift */,
+			);
+			path = LoopoverUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +157,24 @@
 			productReference = C680A1662B9399A800E230F4 /* Loopover.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C6DF78B62C179C0B0061DCE2 /* LoopoverUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6DF78BD2C179C0B0061DCE2 /* Build configuration list for PBXNativeTarget "LoopoverUITests" */;
+			buildPhases = (
+				C6DF78B32C179C0B0061DCE2 /* Sources */,
+				C6DF78B42C179C0B0061DCE2 /* Frameworks */,
+				C6DF78B52C179C0B0061DCE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6DF78BC2C179C0B0061DCE2 /* PBXTargetDependency */,
+			);
+			name = LoopoverUITests;
+			productName = LoopoverUITests;
+			productReference = C6DF78B72C179C0B0061DCE2 /* LoopoverUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -114,11 +182,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					C680A1652B9399A800E230F4 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					C6DF78B62C179C0B0061DCE2 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = C680A1652B9399A800E230F4;
 					};
 				};
 			};
@@ -139,6 +211,7 @@
 			projectRoot = "";
 			targets = (
 				C680A1652B9399A800E230F4 /* Loopover */,
+				C6DF78B62C179C0B0061DCE2 /* LoopoverUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -153,6 +226,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6DF78B52C179C0B0061DCE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -162,15 +242,37 @@
 			files = (
 				C65AF4DE2B967F92008C3FDD /* Haptics.swift in Sources */,
 				C680A16C2B9399A800E230F4 /* ContentView.swift in Sources */,
+				C6BEFAE82C18D73400BC1458 /* AboutView.swift in Sources */,
+				C6E8F6992BFAD0E9005CFC50 /* GameSettings.swift in Sources */,
 				C680A17A2B93DB2700E230F4 /* Color.swift in Sources */,
-				401A66222B94694100D40FC2 /* Info.swift in Sources */,
+				401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */,
+				C6BEFAEA2C18DB9200BC1458 /* LicensesView.swift in Sources */,
 				C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */,
 				C680A1782B93A4F800E230F4 /* Board.swift in Sources */,
+				C6E8F6972BFAD0BC005CFC50 /* GameView.swift in Sources */,
+				C6DF78C52C17A45D0061DCE2 /* HowToPlayView.swift in Sources */,
 				C680A17C2B93FE8900E230F4 /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6DF78B32C179C0B0061DCE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6DF78C12C179C6D0061DCE2 /* BoardTests.swift in Sources */,
+				C6DF78BA2C179C0B0061DCE2 /* LoopoverUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6DF78BC2C179C0B0061DCE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C680A1652B9399A800E230F4 /* Loopover */;
+			targetProxy = C6DF78BB2C179C0B0061DCE2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C680A1722B9399AA00E230F4 /* Debug */ = {
@@ -303,25 +405,27 @@
 				DEVELOPMENT_TEAM = 2XM9FQAP3J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Loopover/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Loopover;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.Loopover;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LoopoverApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -337,26 +441,66 @@
 				DEVELOPMENT_TEAM = 2XM9FQAP3J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Loopover/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Loopover;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.Loopover;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LoopoverApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C6DF78BE2C179C0B0061DCE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LoopoverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Loopover.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Loopover";
+			};
+			name = Debug;
+		};
+		C6DF78BF2C179C0B0061DCE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LoopoverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Loopover.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Loopover";
 			};
 			name = Release;
 		};
@@ -377,6 +521,15 @@
 			buildConfigurations = (
 				C680A1752B9399AA00E230F4 /* Debug */,
 				C680A1762B9399AA00E230F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6DF78BD2C179C0B0061DCE2 /* Build configuration list for PBXNativeTarget "LoopoverUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6DF78BE2C179C0B0061DCE2 /* Debug */,
+				C6DF78BF2C179C0B0061DCE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
