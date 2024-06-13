@@ -17,7 +17,7 @@ struct GameView: View {
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
-    @AppStorage("doHaptics") var doHaptics = false
+    @AppStorage("doHaptics") var doHaptics = true
     @AppStorage("gridSize") var gridSize = 5
 
     // Dragging

@@ -11,7 +11,7 @@ struct GameInfoPopover: View {
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
-    @AppStorage("doHaptics") var doHaptics = false
+    @AppStorage("doHaptics") var doHaptics = true
     
     @State private var showInfoSheet: Bool = false
     @State private var showAboutSheet: Bool = false
