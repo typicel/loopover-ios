@@ -28,9 +28,11 @@ struct Element {
 class Board: ObservableObject{
     @Published var board: [[Element]]
     @Published var hundreths: Int
+    @Published var numMoves: Int
     private var timer: Timer?
     var rows: Int
     var cols: Int
+    
     
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows;
@@ -38,6 +40,7 @@ class Board: ObservableObject{
         self.board = [[Element]]()
         self.hundreths = 0
         self.timer = nil
+        self.numMoves = 0
         
         self.createBoard(rows, cols)
     }
@@ -70,6 +73,13 @@ class Board: ObservableObject{
         self.createBoard(size, size)
     }
     
+    func getMps() -> Double {
+        guard self.hundreths > 0 else { return 0 }
+        
+        let seconds: Double = Double(self.hundreths / 100)
+        return Double(self.numMoves) / seconds
+    }
+    
     func startTimer() {
         timer?.invalidate()
         self.hundreths = 0
@@ -83,8 +93,9 @@ class Board: ObservableObject{
         timer = nil
     }
     
-    func resetTimer() {
+    func resetBoard() {
         self.hundreths = 0
+        self.numMoves = 0
     }
     
     /// Performs a random number of random movements to scramble the board
@@ -127,6 +138,7 @@ class Board: ObservableObject{
         } else {
             self.moveColumn(index: move.index, n: move.n)
         }
+        self.numMoves += 1
     }
     
     private func moveRow(index: Int, n: Int) {

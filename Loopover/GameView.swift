@@ -45,27 +45,29 @@ struct GameView: View {
     @State private var personalBest: String? = UserDefaults.standard.string(forKey: "PB_5")
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Spacer()
             
             // Top of Grid
             HStack(alignment: .bottom) {
                 // PB Timer
-                VStack {
+                VStack(alignment: .leading) {
                     Text(self.board.formatTime(self.board.hundreths))
                         .font(.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if let pb = self.personalBest {
                         Text("Personal Best: \(self.board.formatTime(Int(pb)!))")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.caption)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.subheadline)
                     } else {
                         Text("Personal Best: --:--:--")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.caption)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.subheadline)
                     }
+                    
                 } // VStack
+                
                 
                 Spacer()
                 
@@ -117,7 +119,7 @@ struct GameView: View {
             )
             
             // Bottom of Grid
-            HStack{
+            HStack(alignment: .center){
                 // Info Button
                 Button("", systemImage: "gear", action: {self.showPopover = true})
                     .popover(isPresented: $showPopover, arrowEdge: .top){
@@ -128,6 +130,10 @@ struct GameView: View {
                     } // Button
                     .padding()
                 
+                Spacer()
+                Text("\(board.numMoves) moves / \(String(format: "%.2f", self.board.getMps())) mps")
+                    .font(.caption)
+                    .foregroundStyle(.gray)
                 TipView(tip, arrowEdge: .trailing)
                 Spacer()
 
@@ -212,7 +218,7 @@ struct GameView: View {
     
     func resetBoard() {
         self.board.stopTimer()
-        self.board.resetTimer()
+        self.board.resetBoard()
         self.gameStarted = false
         self.freezeGestures = false
     }
