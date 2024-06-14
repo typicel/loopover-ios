@@ -18,7 +18,8 @@ struct GameView: View {
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
     @AppStorage("doHaptics") var doHaptics = true
-    @AppStorage("gridSize") var gridSize = 5
+    @State private var gridSize = 5
+    
 
     // Dragging
     @State private var availableSpace: CGFloat = 393.0 // These get overwritten immedieatly
@@ -54,37 +55,40 @@ struct GameView: View {
                 VStack(alignment: .leading) {
                     Text(self.board.formatTime(self.board.hundreths))
                         .font(.title)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if let pb = self.personalBest {
                         Text("Personal Best: \(self.board.formatTime(Int(pb)!))")
-//                            .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.subheadline)
                     } else {
                         Text("Personal Best: --:--:--")
-//                            .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.subheadline)
                     }
                     
                 } // VStack
                 
-                
                 Spacer()
                 
                 // Grid Size Button
-                Button("\(self.gridSize)x\(self.gridSize)") {
-                    selectedSizeIdx = (selectedSizeIdx + 1) % sizes.count
+                Picker("", selection: self.$selectedSizeIdx) {
+                    ForEach(Array(sizes.enumerated()), id: \.offset) { offset, size in
+                        Text("\(size)x\(size)").tag(offset)
+                    }
+                }
+                .pickerStyle(.automatic)
+                .onChange(of: self.selectedSizeIdx) {
+                    print("selected: \(self.selectedSizeIdx)")
                     self.gridSize = sizes[selectedSizeIdx]
                     
                     self.boxSize = availableSpace / CGFloat(self.gridSize)
                     self.board.resize(self.gridSize)
-                    self.resetBoard()
+                    
+                    self.board.stopTimer()
+                    self.board.resetBoard()
+                    self.gameStarted = false
+                    self.freezeGestures = true
                     
                     self.personalBest = UserDefaults.standard.string(forKey: "\(self.gridSize)")
-                } // Button
-//                .frame(alignment: .bottom)
-//                .buttonStyle(.bordered)
-                
+                }
             } // HStack
             
             LazyVGrid(columns: Array(repeating: GridItem(), count: self.board.cols), spacing: -1) {

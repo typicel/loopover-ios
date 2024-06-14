@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* GameInfoPopover.swift */; };
+		C626254D2C1CCB81009C2C11 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C626254C2C1CCB81009C2C11 /* ConfettiSwiftUI */; };
 		C65AF4DE2B967F92008C3FDD /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AF4DD2B967F92008C3FDD /* Haptics.swift */; };
 		C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1692B9399A800E230F4 /* LoopoverApp.swift */; };
 		C680A16C2B9399A800E230F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A16B2B9399A800E230F4 /* ContentView.swift */; };
@@ -16,7 +17,6 @@
 		C680A1782B93A4F800E230F4 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1772B93A4F800E230F4 /* Board.swift */; };
 		C680A17A2B93DB2700E230F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1792B93DB2700E230F4 /* Color.swift */; };
 		C680A17C2B93FE8900E230F4 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A17B2B93FE8900E230F4 /* Box.swift */; };
-		C6B2E47E2B945D7F00A1FC8B /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C6B2E47D2B945D7F00A1FC8B /* ConfettiSwiftUI */; };
 		C6BEFAE82C18D73400BC1458 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEFAE72C18D73400BC1458 /* AboutView.swift */; };
 		C6BEFAEA2C18DB9200BC1458 /* LicensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEFAE92C18DB9200BC1458 /* LicensesView.swift */; };
 		C6DF78BA2C179C0B0061DCE2 /* LoopoverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DF78B92C179C0B0061DCE2 /* LoopoverUITests.swift */; };
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6B2E47E2B945D7F00A1FC8B /* ConfettiSwiftUI in Frameworks */,
+				C626254D2C1CCB81009C2C11 /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C626254B2C1CCB81009C2C11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C680A15D2B9399A800E230F4 = {
 			isa = PBXGroup;
 			children = (
 				C680A1682B9399A800E230F4 /* Loopover */,
 				C6DF78B82C179C0B0061DCE2 /* LoopoverUITests */,
 				C680A1672B9399A800E230F4 /* Products */,
+				C626254B2C1CCB81009C2C11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,7 +159,7 @@
 			);
 			name = Loopover;
 			packageProductDependencies = (
-				C6B2E47D2B945D7F00A1FC8B /* ConfettiSwiftUI */,
+				C626254C2C1CCB81009C2C11 /* ConfettiSwiftUI */,
 			);
 			productName = Loopover;
 			productReference = C680A1662B9399A800E230F4 /* Loopover.app */;
@@ -550,7 +558,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C6B2E47D2B945D7F00A1FC8B /* ConfettiSwiftUI */ = {
+		C626254C2C1CCB81009C2C11 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C6B2E47C2B945D7F00A1FC8B /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
