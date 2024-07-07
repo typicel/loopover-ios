@@ -19,7 +19,6 @@ struct GameView: View {
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
     @AppStorage("doHaptics") var doHaptics = true
     @State private var gridSize = 5
-    
 
     // Dragging
     @State private var availableSpace: CGFloat = 393.0 // These get overwritten immedieatly
@@ -40,8 +39,9 @@ struct GameView: View {
     @State private var confettiCounter = 0
     @State private var haptics = GameHaptics()
     
-    var tip = ScrambleTip()
-    
+    var scrambleTip = ScrambleTip()
+    var swipeTip = SwipeTip()
+
     // PB
     @State private var personalBest: String? = UserDefaults.standard.string(forKey: "PB_5")
     
@@ -89,6 +89,7 @@ struct GameView: View {
                     
                     self.personalBest = UserDefaults.standard.string(forKey: "\(self.gridSize)")
                 }
+                
             } // HStack
             
             LazyVGrid(columns: Array(repeating: GridItem(), count: self.board.cols), spacing: -1) {
@@ -121,6 +122,7 @@ struct GameView: View {
                     } // onAppear
                 } // GeometryReader
             )
+//            .popoverTip(swipeTip, arrowEdge: .bottom)
             
             // Bottom of Grid
             HStack(alignment: .center){
@@ -138,7 +140,6 @@ struct GameView: View {
                 Text("\(board.numMoves) moves / \(String(format: "%.2f", self.board.getMps())) mps")
                     .font(.caption)
                     .foregroundStyle(.gray)
-                TipView(tip, arrowEdge: .trailing)
                 Spacer()
 
                 // Scramble Button
@@ -148,7 +149,12 @@ struct GameView: View {
                     if self.doHaptics {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     }
-                }.padding()
+                    scrambleTip.invalidate(reason: .actionPerformed)
+//                    SwipeTip.hasTappedScramble.toggle()
+                }
+                .padding()
+//                .popoverTip(scrambleTip)
+                
                 
                 
             } // HStack
@@ -169,6 +175,9 @@ struct GameView: View {
             guard index >= 0 && index < self.board.rows else { return }
             
             board.move(Move(axis: axis, index: index, n: n))
+            
+//            swipeTip.invalidate(reason: .actionPerformed)
+//            BoardSizeTip.hasSwiped.toggle()
             
             if self.doHaptics {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -228,23 +237,56 @@ struct GameView: View {
     }
 }
 
-struct ScrambleTip: Tip {
+struct SwipeTip: Tip {
+    
+    @Parameter
+    static var hasTappedScramble: Bool = false
+    
+    var rules: [Rule]  {
+        [
+            #Rule(Self.$hasTappedScramble) {
+                $0 == true
+            }
+        ]
+    }
+    
     var title: Text {
-        Text("Scramble")
+        Text("How to Play")
     }
 
+    var message: Text? {
+        Text("Swipe to move a row or column. The tiles will loopover on themselves")
+    }
+
+    var image: Image? {
+        Image(systemName: "questionmark")
+    }
+
+}
+
+struct ScrambleTip: Tip {
+    var title: Text {
+        Text("How to Play")
+    }
 
     var message: Text? {
         Text("Tap here to scramble the board")
     }
 
-
     var image: Image? {
-        return nil
+        Image(systemName: "questionmark")
     }
 }
 
 
 #Preview {
     GameView()
+        .task {
+            try? Tips.resetDatastore()
+            
+            try? Tips.configure([
+                .displayFrequency(.immediate),
+                .datastoreLocation(.applicationDefault)
+            ])
+        }
 }

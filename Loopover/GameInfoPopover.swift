@@ -17,7 +17,7 @@ struct GameInfoPopover: View {
     @State private var showAboutSheet: Bool = false
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Spacer()
             Text("Settings")
                 .font(.system(size: 24))
@@ -40,12 +40,6 @@ struct GameInfoPopover: View {
                 
                 HStack {
                     Toggle("Confetti", isOn: $doConfettiEffects)
-//                    Text("Confetti")
-//                    Picker("", selection: $doConfettiEffects) {
-//                        Text("Disabled").tag(false)
-//                        Text("Enabled").tag(true)
-//                    }
-//                    .pickerStyle(.)
                     .padding()
                     .onChange(of: doConfettiEffects) {
                         UserDefaults.standard.setValue(doConfettiEffects, forKey: "doConfettiEffects")
@@ -53,13 +47,7 @@ struct GameInfoPopover: View {
                 }
                 
                 HStack {
-//                    Text("Haptics")
                     Toggle("Haptics", isOn: $doHaptics)
-//                    Picker("", selection: $doHaptics) {
-//                        Text("Disabled").tag(false)
-//                        Text("Enabled").tag(true)
-//                    }
-//                    .pickerStyle(.segmented)
                     .padding()
                     .onChange(of: doHaptics) {
                         UserDefaults.standard.setValue(doHaptics, forKey: "doHaptics")

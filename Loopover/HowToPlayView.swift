@@ -32,11 +32,12 @@ struct HowToPlayView: View {
             
             Spacer()
             
-            Button("Continue") {
+            Button("Dismiss") {
                 dismiss()
             }
             .buttonStyle(.bordered)
             .buttonBorderShape(.roundedRectangle)
+            .accessibilityLabel("Dismiss")
             
             Spacer()
         }

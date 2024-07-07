@@ -25,9 +25,6 @@ struct ContentView: View {
                     ])
                 }
         }
-        .sheet(isPresented: $firstTime) {
-            HowToPlayView()
-        }
     }
 }
 
