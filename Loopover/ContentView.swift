@@ -6,23 +6,25 @@
 //
 
 import SwiftUI
-import TipKit
+import SwiftData
 
 struct ContentView: View {
     
-    @AppStorage("firstTime") var firstTime = true
-    @Environment(\.dismiss) var dismiss
-    
-    @State private var isActive: Bool = true
+    @Environment(\.modelContext) var context
     
     var body: some View {
-        VStack {
+        TabView {
             GameView()
-                .task {
-                    try? Tips.configure([
-                        .displayFrequency(.immediate),
-                        .datastoreLocation(.applicationDefault)
-                    ])
+                .environmentObject(GameViewModel(modelContext: self.context))
+                .tabItem {
+                    Image(systemName: "gamecontroller")
+                    Text("Game")
+                }
+            
+            StatsView()
+                .tabItem {
+                    Image(systemName: "chart.bar.fill")
+                    Text("Stats")
                 }
         }
     }

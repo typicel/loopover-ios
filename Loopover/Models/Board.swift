@@ -8,39 +8,23 @@
 import Foundation
 import SwiftUI
 
-enum Axis {
-    case Row
-    case Col
-}
 
-struct Move {
-    var axis: Axis
-    var index: Int
-    var n: Int
-}
-
-struct Element {
-    var num: Int
-    var color: Color
-}
 
 /// Data Model representing the loopover board. View should conform to this
-class Board: ObservableObject{
-    @Published var board: [[Element]]
-    @Published var hundreths: Int
-    @Published var numMoves: Int
-    private var timer: Timer?
+class Board {
+    
+    var board: [[Element]]
     var rows: Int
     var cols: Int
     
+    var totalElemens: Int {
+        rows * cols
+    }
     
     init(_ rows: Int, _ cols: Int) {
         self.rows = rows;
         self.cols = cols
         self.board = [[Element]]()
-        self.hundreths = 0
-        self.timer = nil
-        self.numMoves = 0
         
         self.createBoard(rows, cols)
     }
@@ -73,30 +57,6 @@ class Board: ObservableObject{
         self.createBoard(size, size)
     }
     
-    func getMps() -> Double {
-        guard self.hundreths > 0 else { return 0 }
-        
-        let seconds: Double = Double(self.hundreths / 100)
-        return Double(self.numMoves) / seconds
-    }
-    
-    func startTimer() {
-        timer?.invalidate()
-        self.hundreths = 0
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
-            self.hundreths += 1
-        }
-    }
-    
-    func stopTimer() {
-        self.timer?.invalidate()
-        timer = nil
-    }
-    
-    func resetBoard() {
-        self.hundreths = 0
-        self.numMoves = 0
-    }
     
     /// Performs a random number of random movements to scramble the board
     func scramble() {
@@ -138,7 +98,6 @@ class Board: ObservableObject{
         } else {
             self.moveColumn(index: move.index, n: move.n)
         }
-        self.numMoves += 1
     }
     
     private func moveRow(index: Int, n: Int) {
