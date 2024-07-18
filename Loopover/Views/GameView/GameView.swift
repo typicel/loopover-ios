@@ -27,15 +27,15 @@ struct GameView: View {
     }
 }
 
-#Preview("Game") {
-    struct WrapperView: View {
-        let modelContext = try! ModelContainer(for: Solve.self).mainContext
-
-        var body: some View {
-            GameView()
-                .environmentObject(GameViewModel(modelContext: modelContext))
-        }
-    }
-    
-    return WrapperView()
-}
+//#Preview("Game") {
+//    struct WrapperView: View {
+//        let modelContext = try! ModelContainer(for: Solve.self).mainContext
+//
+//        var body: some View {
+//            GameView()
+//                .environmentObject(GameViewModel(modelContext: modelContext))
+//        }
+//    }
+//    
+//    return WrapperView()
+//}
