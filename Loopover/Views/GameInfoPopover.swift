@@ -15,76 +15,66 @@ struct GameInfoPopover: View {
     
     @State private var showInfoSheet: Bool = false
     @State private var showAboutSheet: Bool = false
-
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            Text("Settings")
-                .font(.system(size: 24))
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding()
-
+        NavigationStack {
             List {
-                HStack {
-                    Text("Square Style")
-                    Picker("", selection: $showNumbersOnly) {
-                        Text("Letters").tag(false)
-                        Text("Numbers").tag(true)
+                Section(header: Text("Appearance")) {
+                    HStack {
+                        Picker("Square Style", selection: $showNumbersOnly) {
+                            Text("Letters").tag(false)
+                            Text("Numbers").tag(true)
+                        }
+                        .pickerStyle(.automatic)
+                        .onChange(of: showNumbersOnly) {
+                            UserDefaults.standard.setValue(showNumbersOnly, forKey: "showNumbersOnly")
+                        }
                     }
-                    .pickerStyle(.segmented)
-                    .padding()
-                    .onChange(of: showNumbersOnly) {
-                        UserDefaults.standard.setValue(showNumbersOnly, forKey: "showNumbersOnly")
+                    
+                    HStack {
+                        Toggle("Confetti", isOn: $doConfettiEffects)
+                            .onChange(of: doConfettiEffects) {
+                                UserDefaults.standard.setValue(doConfettiEffects, forKey: "doConfettiEffects")
+                            }
+                    }
+                    
+                    HStack {
+                        Toggle("Haptics", isOn: $doHaptics)
+                            .onChange(of: doHaptics) {
+                                UserDefaults.standard.setValue(doHaptics, forKey: "doHaptics")
+                            }
                     }
                 }
                 
-                HStack {
-                    Toggle("Confetti", isOn: $doConfettiEffects)
-                    .padding()
-                    .onChange(of: doConfettiEffects) {
-                        UserDefaults.standard.setValue(doConfettiEffects, forKey: "doConfettiEffects")
+                Section(header: Text("Info")) {
+                    NavigationLink {
+                        HowToPlayView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "info.circle")
+                            Text("How to Play")
+                        }
+                        .foregroundColor(.blue)
                     }
-                }
-                
-                HStack {
-                    Toggle("Haptics", isOn: $doHaptics)
-                    .padding()
-                    .onChange(of: doHaptics) {
-                        UserDefaults.standard.setValue(doHaptics, forKey: "doHaptics")
+                    
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "questionmark")
+                            Text("About")
+                        }
+                        .foregroundColor(.blue)
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.insetGrouped)
             .scrollDisabled(true)
-            
-
-            Spacer()
-            
-            Button {
-                showInfoSheet = true
-            } label: {
-                Label("How to Play", systemImage: "info.circle")
-            }
-            .padding()
-            
-            Button {
-                showAboutSheet = true
-            } label: {
-                Label("About", systemImage: "questionmark")
-            }
-            .padding()
-
-        }
-        .sheet(isPresented: $showInfoSheet) {
-            HowToPlayView()
-        }
-        .sheet(isPresented: $showAboutSheet) {
-            AboutView()
+            .navigationTitle("Settings")
         }
     }
 }
 
 #Preview {
     GameInfoPopover()
-        .environmentObject(GameSettings())
 }

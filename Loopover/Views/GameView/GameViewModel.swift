@@ -119,7 +119,7 @@ class GameViewModel: ObservableObject {
                     haptics.complexSuccess()
                 }
                 
-                self.saveGameStats()
+//                self.saveGameStats()
                 
                 if let pb = UserDefaults.standard.string(forKey: "\(self.gridSize)") {
                     if self.hundreths < Int(pb)! {

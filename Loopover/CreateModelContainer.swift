@@ -62,9 +62,8 @@ func createModelContext() -> ModelContext {
         
         try context.save()
         
-        return context
 #endif
-        
+        return context
     } catch {
         fatalError("Failed to initialize model container")
     }

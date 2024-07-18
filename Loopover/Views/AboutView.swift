@@ -42,9 +42,7 @@ struct AboutView: View {
             }
             .listStyle(.insetGrouped)
             .scrollDisabled(true)
-            
-            
-            Spacer()
+
         }
     }
 }

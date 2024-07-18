@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* GameInfoPopover.swift */; };
+		C61F81E22C48BE3F00EEBDF5 /* square.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C61F81E12C48BE3F00EEBDF5 /* square.mp4 */; };
 		C626254D2C1CCB81009C2C11 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C626254C2C1CCB81009C2C11 /* ConfettiSwiftUI */; };
 		C65AF4DE2B967F92008C3FDD /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AF4DD2B967F92008C3FDD /* Haptics.swift */; };
 		C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1692B9399A800E230F4 /* LoopoverApp.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		401A66212B94694100D40FC2 /* GameInfoPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoPopover.swift; sourceTree = "<group>"; };
+		C61F81E12C48BE3F00EEBDF5 /* square.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = square.mp4; sourceTree = "<group>"; };
 		C65AF4DD2B967F92008C3FDD /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		C680A1662B9399A800E230F4 /* Loopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680A1692B9399A800E230F4 /* LoopoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopoverApp.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				C688F6B42C40805E00EE078E /* Views */,
 				C688F6B32C40804800EE078E /* Models */,
+				C61F81E12C48BE3F00EEBDF5 /* square.mp4 */,
 				C680A1792B93DB2700E230F4 /* Color.swift */,
 				C65AF4DD2B967F92008C3FDD /* Haptics.swift */,
 				C688F6BD2C40920200EE078E /* Constants.swift */,
@@ -291,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61F81E22C48BE3F00EEBDF5 /* square.mp4 in Resources */,
 				C680A1712B9399AA00E230F4 /* Preview Assets.xcassets in Resources */,
 				C680A16E2B9399AA00E230F4 /* Assets.xcassets in Resources */,
 			);
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Loopover/Preview Content\"";
 				DEVELOPMENT_TEAM = 2XM9FQAP3J;
 				ENABLE_PREVIEWS = YES;
@@ -517,7 +521,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Loopover/Preview Content\"";
 				DEVELOPMENT_TEAM = 2XM9FQAP3J;
 				ENABLE_PREVIEWS = YES;

@@ -11,25 +11,16 @@ import SwiftData
 struct ContentView: View {
     
     @Environment(\.modelContext) var context
+    @AppStorage("firstTime") var firstTime: Bool = true
     
     var body: some View {
-        TabView {
-            GameView()
-                .environmentObject(GameViewModel(modelContext: self.context))
-                .tabItem {
-                    Image(systemName: "gamecontroller")
-                    Text("Game")
-                }
-            
-            StatsView()
-                .tabItem {
-                    Image(systemName: "chart.bar.fill")
-                    Text("Stats")
-                }
-        }
+        GameView()
+            .environmentObject(GameViewModel(modelContext: self.context))
+            .sheet(isPresented: $firstTime) {
+                HowToPlayView()
+            }
     }
 }
-
 
 #Preview {
     ContentView()
