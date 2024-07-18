@@ -45,9 +45,3 @@ struct TopInfoBar: View {
         }
     }
 }
-
-//#Preview {
-//    let modelContext = try! ModelContainer(for: Solve.self).mainContext
-//    TopInfoBar()
-//        .environmentObject(GameViewModel(modelContext: modelContext))
-//}

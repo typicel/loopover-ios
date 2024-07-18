@@ -48,7 +48,3 @@ struct GameBoardView: View {
     }
     
 }
-
-#Preview {
-    GameBoardView()
-}

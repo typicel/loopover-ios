@@ -40,9 +40,3 @@ struct BottomInfoBar: View {
     }
 }
 
-
-#Preview {
-    let modelContext = try! ModelContainer(for: Solve.self).mainContext
-    BottomInfoBar()
-        .environmentObject(GameViewModel(modelContext: modelContext))
-}
