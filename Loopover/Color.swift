@@ -24,4 +24,8 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
-let cTeal = Color(UIColor(hex: "#002925"))
+
+extension Color {
+    static let cTeal = Color(UIColor(hex: "#002925"))
+}
+

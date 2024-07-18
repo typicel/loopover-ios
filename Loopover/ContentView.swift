@@ -6,28 +6,21 @@
 //
 
 import SwiftUI
-import TipKit
+import SwiftData
 
 struct ContentView: View {
     
-    @AppStorage("firstTime") var firstTime = true
-    @Environment(\.dismiss) var dismiss
-    
-    @State private var isActive: Bool = true
+    @Environment(\.modelContext) var context
+    @AppStorage("firstTime") var firstTime: Bool = true
     
     var body: some View {
-        VStack {
-            GameView()
-                .task {
-                    try? Tips.configure([
-                        .displayFrequency(.immediate),
-                        .datastoreLocation(.applicationDefault)
-                    ])
-                }
-        }
+        GameView()
+            .environmentObject(GameViewModel(modelContext: self.context))
+            .sheet(isPresented: $firstTime) {
+                HowToPlayView()
+            }
     }
 }
-
 
 #Preview {
     ContentView()

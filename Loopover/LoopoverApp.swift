@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
+
 
 @main
 struct LoopoverApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContext(createModelContext())
         }
     }
 }
