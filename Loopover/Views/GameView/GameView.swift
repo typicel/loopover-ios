@@ -27,8 +27,15 @@ struct GameView: View {
     }
 }
 
-#Preview {
-    let modelContext = try! ModelContainer(for: Solve.self).mainContext
-    GameView()
-        .environmentObject(GameViewModel(modelContext: modelContext))
+#Preview("Game") {
+    struct WrapperView: View {
+        let modelContext = try! ModelContainer(for: Solve.self).mainContext
+
+        var body: some View {
+            GameView()
+                .environmentObject(GameViewModel(modelContext: modelContext))
+        }
+    }
+    
+    return WrapperView()
 }
