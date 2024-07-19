@@ -19,7 +19,7 @@ func generateRandomSolve(for gridSize: Int) -> Solve {
     let randomTimeInterval = TimeInterval.random(in: -2 * oneDayInSeconds...0)
     let randomDate = now.addingTimeInterval(randomTimeInterval)
         
-    return Solve(timeInHundreths: timeInHundreths, numMoves: numMoves, averageMovesPerSecond: averageMovesPerSecond, gridSize: gridSize, gameTime: randomDate)
+    return Solve(timeInHundreths: timeInHundreths, numMoves: numMoves, averageMovesPerSecond: averageMovesPerSecond, gridSize: gridSize, movesMade: [], gameTime: randomDate)
 }
 
 func insertIntoDatabase(_ solves: [Solve], in context: ModelContext) {
@@ -30,13 +30,14 @@ func insertIntoDatabase(_ solves: [Solve], in context: ModelContext) {
 
 func createModelContext() -> ModelContext {
     do {
-        let config = ModelConfiguration(for: Solve.self, isStoredInMemoryOnly: true)
+        let config = ModelConfiguration(for: Solve.self, isStoredInMemoryOnly: false)
         let container = try ModelContainer(for: Solve.self, configurations: config)
         
         let context = ModelContext(container)
         context.autosaveEnabled = true
         
 #if DEBUG
+        print("adding fake solves")
         var debugData3 = [Solve]()
         var debugData4 = [Solve]()
         var debugData5 = [Solve]()

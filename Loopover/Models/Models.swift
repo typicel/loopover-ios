@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-enum Axis {
+enum Axis: Codable, Hashable {
     case Row
     case Col
 }
 
-struct Move {
+struct Move: Codable, Hashable {
     var axis: Axis
     var index: Int
     var n: Int

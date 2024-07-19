@@ -16,10 +16,10 @@ struct BottomInfoBar: View {
         HStack(alignment: .center){
             
             // Info Button
-            Button("", systemImage: "gear", action: {viewModel.showPopover = true})
-                .sheet(isPresented: $viewModel.showPopover){
-                    GameInfoPopover()
-                }
+//            Button("", systemImage: "gear", action: {viewModel.showPopover = true})
+//                .sheet(isPresented: $viewModel.showPopover){
+//                    GameInfoView()
+//                }
             
             Spacer()
             Text("\(viewModel.numMoves) moves / \(String(format: "%.2f", viewModel.getMps())) mps")

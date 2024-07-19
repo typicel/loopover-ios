@@ -16,13 +16,15 @@ class Solve {
     var numMoves: Int
     var gridSize: Int
     var averageMovesPerSecond: Double
+    var movesMade: [Move]
     
-    init(timeInHundreths: Int, numMoves: Int, averageMovesPerSecond: Double, gridSize: Int, gameTime: Date = .now) {
+    init(timeInHundreths: Int, numMoves: Int, averageMovesPerSecond: Double, gridSize: Int, movesMade: [Move], gameTime: Date = .now) {
         self.gameTime = gameTime
         self.timeInHundreths = timeInHundreths
         self.numMoves = numMoves
         self.averageMovesPerSecond = averageMovesPerSecond
         self.gridSize = gridSize
+        self.movesMade = movesMade
     }
-    
 }
+

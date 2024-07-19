@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* GameInfoPopover.swift */; };
+		401A66222B94694100D40FC2 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A66212B94694100D40FC2 /* GameInfoView.swift */; };
 		C61F81E22C48BE3F00EEBDF5 /* square.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C61F81E12C48BE3F00EEBDF5 /* square.mp4 */; };
 		C626254D2C1CCB81009C2C11 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C626254C2C1CCB81009C2C11 /* ConfettiSwiftUI */; };
 		C65AF4DE2B967F92008C3FDD /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AF4DD2B967F92008C3FDD /* Haptics.swift */; };
@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		401A66212B94694100D40FC2 /* GameInfoPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoPopover.swift; sourceTree = "<group>"; };
+		401A66212B94694100D40FC2 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		C61F81E12C48BE3F00EEBDF5 /* square.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = square.mp4; sourceTree = "<group>"; };
 		C65AF4DD2B967F92008C3FDD /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		C680A1662B9399A800E230F4 /* Loopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,7 +182,7 @@
 				C6BEFAE72C18D73400BC1458 /* AboutView.swift */,
 				C688F6AC2C407B4E00EE078E /* StatsView.swift */,
 				C680A17B2B93FE8900E230F4 /* Box.swift */,
-				401A66212B94694100D40FC2 /* GameInfoPopover.swift */,
+				401A66212B94694100D40FC2 /* GameInfoView.swift */,
 				C6BEFAE92C18DB9200BC1458 /* LicensesView.swift */,
 			);
 			path = Views;
@@ -321,7 +321,7 @@
 				C6E8F6992BFAD0E9005CFC50 /* GameSettings.swift in Sources */,
 				C680A17A2B93DB2700E230F4 /* Color.swift in Sources */,
 				C688F6BC2C4091A400EE078E /* GameBoardView.swift in Sources */,
-				401A66222B94694100D40FC2 /* GameInfoPopover.swift in Sources */,
+				401A66222B94694100D40FC2 /* GameInfoView.swift in Sources */,
 				C688F6AF2C407D7900EE078E /* GameViewModel.swift in Sources */,
 				C6BEFAEA2C18DB9200BC1458 /* LicensesView.swift in Sources */,
 				C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */,

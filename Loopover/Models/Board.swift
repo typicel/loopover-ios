@@ -57,7 +57,6 @@ class Board {
         self.createBoard(size, size)
     }
     
-    
     /// Performs a random number of random movements to scramble the board
     func scramble() {
         for _ in 0...self.rows * self.cols + 50 {
