@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameInfoView: View {
+struct SettingsView: View {
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
@@ -76,5 +76,5 @@ struct GameInfoView: View {
 }
 
 #Preview {
-    GameInfoView()
+    SettingsView()
 }

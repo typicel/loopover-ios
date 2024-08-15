@@ -10,8 +10,7 @@ import SwiftData
 import ConfettiSwiftUI
 
 struct GameView: View {
-    
-    @EnvironmentObject var viewModel: GameViewModel
+    @StateObject var viewModel =  GameViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,10 +23,11 @@ struct GameView: View {
             Spacer()
         }
         .padding()
+        .environmentObject(viewModel)
+        
     }
 }
 
 #Preview("Game") {
     GameView()
-        .environmentObject(GameViewModel(modelContext: try! ModelContainer(for: Solve.self).mainContext ))
 }
