@@ -12,7 +12,7 @@ struct ContentView: View {
     
     @Environment(\.modelContext) var context
     @AppStorage("firstTime") var firstTime: Bool = true
-    @State private var selectedTab = 1
+    @State private var selectedTab = 0
     
     let titles = ["", "Stats", "Settings"]
     
@@ -48,6 +48,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-//        .modelContext(createModelContext())
 }
 

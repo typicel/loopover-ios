@@ -16,7 +16,7 @@ extension Solve {
         return NSFetchRequest<Solve>(entityName: "Solve")
     }
 
-    @NSManaged public var gameTime: Date?
+    @NSManaged public var gameTime: Date
     @NSManaged public var timeInHundreths: Int64
     @NSManaged public var numMoves: Int64
     @NSManaged public var gridSize: Int16

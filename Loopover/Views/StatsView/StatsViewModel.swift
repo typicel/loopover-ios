@@ -147,7 +147,7 @@ class StatsViewModel: ObservableObject {
     var averageLastFiveMoves: String {
         guard filteredSolves.count >= 5 else { return "---" }
         
-        let lastFive: ArraySlice<Solve> = filteredSolves.sorted { $0.gameTime! > $1.gameTime! } .prefix(5)
+        let lastFive: ArraySlice<Solve> = filteredSolves.sorted { $0.gameTime > $1.gameTime } .prefix(5)
         let sum = lastFive.reduce(0) { $0 + Int($1.numMoves) }
         
         return String(sum / 5)
@@ -156,10 +156,18 @@ class StatsViewModel: ObservableObject {
     var averageLastFiveTime: String {
         guard filteredSolves.count >= 5 else { return "---" }
         
-        let lastFive: ArraySlice<Solve> = filteredSolves.sorted { $0.gameTime! > $1.gameTime! } .prefix(5)
+        let lastFive: ArraySlice<Solve> = filteredSolves.sorted { $0.gameTime > $1.gameTime } .prefix(5)
         let sum = lastFive.reduce(0) { $0 + $1.timeInHundreths }
         
         return String(sum / 5)
+    }
+    
+    var lastFiveOrLess: [Solve] {
+        guard filteredSolves.count > 0 else { return [] }
+        
+        let last = filteredSolves.sorted { $0.gameTime > $1.gameTime }.prefix(5)
+        print(last)
+        return Array(last)
     }
 
 

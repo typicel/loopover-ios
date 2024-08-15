@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%lld" : {
+
+    },
     "%lld moves / %@ mps" : {
       "localizations" : {
         "en" : {

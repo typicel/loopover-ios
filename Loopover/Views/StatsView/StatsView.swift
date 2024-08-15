@@ -75,6 +75,7 @@ struct StatsView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding([.trailing])
+
                 
             }
             .padding(9)

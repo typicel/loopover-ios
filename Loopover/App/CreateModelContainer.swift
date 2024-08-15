@@ -20,54 +20,6 @@ func generateRandomSolve(for gridSize: Int) {
     let randomDate = now.addingTimeInterval(randomTimeInterval)
         
     SolveStorageManager.shared.insertNewSolve(gameTime: randomDate, timeInHundreths: Int64(timeInHundreths), numMoves: Int64(numMoves), gridSize: Int16(gridSize), averageMovesPerSecond: averageMovesPerSecond, movesMade: [])
-    
-//    return Solve(timeInHundreths: timeInHundreths, numMoves: numMoves, averageMovesPerSecond: averageMovesPerSecond, gridSize: gridSize, movesMade: [], gameTime: randomDate)
+
 }
 
-//func insertIntoDatabase(_ solves: [Solve], in context: ModelContext) {
-//    for solve in solves {
-//        context.insert(solve)
-//    }
-//}
-
-//func createModelContext() -> ModelContext {
-//    do {
-//        let config = ModelConfiguration(for: Solve.self, isStoredInMemoryOnly: false)
-//        let container = try ModelContainer(for: Solve.self, configurations: config)
-//        
-//        let context = ModelContext(container)
-//        context.autosaveEnabled = true
-//        
-//#if DEBUG
-//        print("adding fake solves")
-//        var debugData3 = [Solve]()
-//        var debugData4 = [Solve]()
-//        var debugData5 = [Solve]()
-//        var debugData6 = [Solve]()
-//        var debugData7 = [Solve]()
-//        
-//        for _ in 1...Int.random(in: 10...15) {
-//            debugData3.append(generateRandomSolve(for: 3))
-//            debugData4.append(generateRandomSolve(for: 4))
-//            debugData5.append(generateRandomSolve(for: 5))
-//            debugData6.append(generateRandomSolve(for: 6))
-//            debugData7.append(generateRandomSolve(for: 7))
-//        }
-//        
-//        // delete all from context
-//        try context.delete(model: Solve.self)
-//        
-//        insertIntoDatabase(debugData3, in: context)
-//        insertIntoDatabase(debugData4, in: context)
-//        insertIntoDatabase(debugData5, in: context)
-//        insertIntoDatabase(debugData6, in: context)
-//        insertIntoDatabase(debugData7, in: context)
-//        
-//        try context.save()
-//        
-//#endif
-//        return context
-//    } catch {
-//        fatalError("Failed to initialize model container")
-//    }
-//}
