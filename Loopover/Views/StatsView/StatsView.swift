@@ -88,9 +88,7 @@ struct StatsView: View {
 }
 
 #Preview {
-    @Previewable @StateObject var statsViewModel: StatsViewModel = StatsViewModel()
     StatsView()
-        .environmentObject(statsViewModel)
 }
 
 
