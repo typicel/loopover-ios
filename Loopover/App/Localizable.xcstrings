@@ -1,0 +1,149 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld moves / %@ mps" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld moves / %2$@ mps"
+          }
+        }
+      }
+    },
+    "%lldx%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lldx%2$lld"
+          }
+        }
+      }
+    },
+    "3x3" : {
+
+    },
+    "4x4" : {
+
+    },
+    "5x5" : {
+
+    },
+    "6x6" : {
+
+    },
+    "7x7" : {
+
+    },
+    "About" : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Board Size" : {
+
+    },
+    "Confetti" : {
+
+    },
+    "ConfettiSwiftUI" : {
+
+    },
+    "Controls" : {
+
+    },
+    "Date" : {
+
+    },
+    "Developed by [Tyler](https://github.com/typicel) and [Noah](https://github.com/nota5633)" : {
+
+    },
+    "Grid Size" : {
+
+    },
+    "Haptics" : {
+
+    },
+    "How to Play" : {
+
+    },
+    "Info" : {
+
+    },
+    "Letters" : {
+
+    },
+    "Licenses" : {
+
+    },
+    "Loopover" : {
+
+    },
+    "Loopover created by [carykh](https://x.com/realcarykh?lang=en)" : {
+
+    },
+    "Loopover is a sliding block puzzle game where the goal is to move each tile to its original position. Swiping a row or column causes the tiles to loop around." : {
+
+    },
+    "Moves" : {
+
+    },
+    "Need help?" : {
+
+    },
+    "Numbers" : {
+
+    },
+    "Ok" : {
+
+    },
+    "Personal Best: --:--:--" : {
+
+    },
+    "Personal Best: %@" : {
+
+    },
+    "Play" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Square Style" : {
+
+    },
+    "Stats" : {
+
+    },
+    "Tap scramble, and swipe rows or columns to move each piece back to its original place" : {
+
+    },
+    "Tap the size button on the top right of the board to change the board size" : {
+
+    },
+    "Time" : {
+
+    },
+    "Value" : {
+
+    },
+    "Version 1.0" : {
+
+    },
+    "What is Loopover?" : {
+
+    }
+  },
+  "version" : "1.0"
+}

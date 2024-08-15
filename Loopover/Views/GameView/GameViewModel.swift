@@ -12,14 +12,17 @@ import SwiftData
 class GameViewModel: ObservableObject {
     
     @Published var board = Board(5, 5)
-    var modelContext: ModelContext
+    @Environment(\.managedObjectContext) var modelContext
+    
+    // MARK - Game Configuration / Settings
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
     @AppStorage("doHaptics") var doHaptics = true
     @Published var gridSize = 5
     
-    // Dragging
+    // MARK - Dragging Parameters
+    
     @Published var availableSpace: CGFloat = 393.0 // These get overwritten immedieatly
     @Published var boxSize: CGFloat = 393.0/5.0
     @Published var isDragging = false
@@ -28,7 +31,7 @@ class GameViewModel: ObservableObject {
     @Published var showPopover = false
     @Published var freezeGestures = true
     @Published var gameStarted = false
-    
+
     // Num rows/cols
     @Published var selectedSizeIdx = 2
     
@@ -42,10 +45,7 @@ class GameViewModel: ObservableObject {
     private var timer: Timer? = nil
     @Published var hundreths: Int = 0
     @Published var numMoves: Int = 0
-    
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-    }
+    private var movesMade: [Move] = []
     
     func calculateSpace(with reader: GeometryProxy) {
         availableSpace = reader.size.width + 10.0
@@ -71,10 +71,7 @@ class GameViewModel: ObservableObject {
     }
     
     func saveGameStats() {
-        let newSolve = Solve(timeInHundreths: hundreths, numMoves: numMoves, averageMovesPerSecond: self.getMps(), gridSize: gridSize)
-        print("saving new solve for size \(gridSize): \(numMoves)")
-        modelContext.insert(newSolve)
-        try! modelContext.save()
+        SolveStorageManager.shared.insertNewSolve(gameTime: .now, timeInHundreths: Int64(hundreths), numMoves: Int64(numMoves), gridSize: Int16(gridSize), averageMovesPerSecond: self.getMps(), movesMade: self.movesMade)
     }
     
     // Get the moves per second at the current moment in time
@@ -94,8 +91,10 @@ class GameViewModel: ObservableObject {
             
             guard index >= 0 && index < self.board.rows else { return }
             
-            board.move(Move(axis: axis, index: index, n: n))
+            let move = Move(axis: axis, index: index, n: n)
+            board.move(move)
             self.numMoves += 1
+            self.movesMade.append(move)
             
             if self.doHaptics {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -115,21 +114,26 @@ class GameViewModel: ObservableObject {
                     confettiCounter += 1
                 }
                 
-                if self.doHaptics {
-                    haptics.complexSuccess()
+                print(self.movesMade)
+
+                Task {
+                    if self.doHaptics {
+                        haptics.complexSuccess()
+                    }
+                
+                    self.saveGameStats()
                 }
                 
-//                self.saveGameStats()
-                
-                if let pb = UserDefaults.standard.string(forKey: "\(self.gridSize)") {
+                if let pb = UserDefaults.standard.string(forKey: "PB_\(self.gridSize)") {
                     if self.hundreths < Int(pb)! {
-                        UserDefaults.standard.set(self.hundreths, forKey: "\(self.gridSize)")
+                        UserDefaults.standard.set(self.hundreths, forKey: "PB_\(self.gridSize)")
                     }
                 } else {
-                    UserDefaults.standard.set(self.hundreths, forKey: "\(self.gridSize)")
+                    UserDefaults.standard.set(self.hundreths, forKey: "PB_\(self.gridSize)")
                 }
-                self.personalBest = UserDefaults.standard.string(forKey: "\(self.gridSize)")
                 
+                self.personalBest = UserDefaults.standard.string(forKey: "PB_\(self.gridSize)")
+                print("insert time for PB_\(self.gridSize)")
             }
         }
     }
@@ -154,6 +158,7 @@ class GameViewModel: ObservableObject {
         self.stopTimer()
         self.hundreths = 0
         self.numMoves = 0
+        self.movesMade = []
         self.gameStarted = false
         self.freezeGestures = false
     }
@@ -163,6 +168,7 @@ class GameViewModel: ObservableObject {
         
         self.boxSize = availableSpace / CGFloat(self.gridSize)
         self.board.resize(self.gridSize)
+        self.movesMade = []
         
         self.stopTimer()
         self.resetBoard()

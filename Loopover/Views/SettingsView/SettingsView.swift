@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameInfoPopover: View {
+struct SettingsView: View {
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
@@ -76,5 +76,5 @@ struct GameInfoPopover: View {
 }
 
 #Preview {
-    GameInfoPopover()
+    SettingsView()
 }
