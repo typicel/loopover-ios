@@ -25,6 +25,10 @@
 		C680A1782B93A4F800E230F4 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A1772B93A4F800E230F4 /* Board.swift */; };
 		C680A17C2B93FE8900E230F4 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680A17B2B93FE8900E230F4 /* Box.swift */; };
 		C68275402C6DB6BF0060A9E5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C682753F2C6DB6BF0060A9E5 /* Localizable.xcstrings */; };
+		C68275432C6EBC900060A9E5 /* Int+DurationFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68275422C6EBC900060A9E5 /* Int+DurationFormat.swift */; };
+		C68275462C7027410060A9E5 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68275452C7027410060A9E5 /* TableView.swift */; };
+		C682754A2C703D670060A9E5 /* UserDefaults+ResetPersonalBests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68275492C703D670060A9E5 /* UserDefaults+ResetPersonalBests.swift */; };
+		C682754C2C703D960060A9E5 /* Binding+IsNotNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C682754B2C703D960060A9E5 /* Binding+IsNotNil.swift */; };
 		C688F6AD2C407B4E00EE078E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C688F6AC2C407B4E00EE078E /* StatsView.swift */; };
 		C688F6AF2C407D7900EE078E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C688F6AE2C407D7900EE078E /* GameViewModel.swift */; };
 		C688F6B22C40801B00EE078E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C688F6B12C40801B00EE078E /* Models.swift */; };
@@ -72,6 +76,10 @@
 		C680A1772B93A4F800E230F4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		C680A17B2B93FE8900E230F4 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		C682753F2C6DB6BF0060A9E5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C68275422C6EBC900060A9E5 /* Int+DurationFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DurationFormat.swift"; sourceTree = "<group>"; };
+		C68275452C7027410060A9E5 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		C68275492C703D670060A9E5 /* UserDefaults+ResetPersonalBests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+ResetPersonalBests.swift"; sourceTree = "<group>"; };
+		C682754B2C703D960060A9E5 /* Binding+IsNotNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+IsNotNil.swift"; sourceTree = "<group>"; };
 		C688F6AC2C407B4E00EE078E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C688F6AE2C407D7900EE078E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		C688F6B12C40801B00EE078E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -124,6 +132,7 @@
 				C688F6AC2C407B4E00EE078E /* StatsView.swift */,
 				C6B122452C41AE9800B6229A /* StatsViewModel.swift */,
 				C66BEC322C4B0C5600E4502C /* MiniStatView.swift */,
+				C68275452C7027410060A9E5 /* TableView.swift */,
 			);
 			path = StatsView;
 			sourceTree = "<group>";
@@ -148,7 +157,6 @@
 				C6B1223F2C40DE7A00B6229A /* CreateModelContainer.swift */,
 				C688F6BD2C40920200EE078E /* Constants.swift */,
 				C66BEC3A2C4B4F0500E4502C /* SolveStorageManager.swift */,
-				C66BEC372C4B4EC100E4502C /* Solve.xcdatamodeld */,
 				C682753F2C6DB6BF0060A9E5 /* Localizable.xcstrings */,
 			);
 			path = App;
@@ -157,8 +165,6 @@
 		C680A15D2B9399A800E230F4 = {
 			isa = PBXGroup;
 			children = (
-				C66BEC602C4B5A3A00E4502C /* Solve+CoreDataClass.swift */,
-				C66BEC612C4B5A3A00E4502C /* Solve+CoreDataProperties.swift */,
 				C680A1682B9399A800E230F4 /* Loopover */,
 				C6DF78B82C179C0B0061DCE2 /* LoopoverUITests */,
 				C680A1672B9399A800E230F4 /* Products */,
@@ -181,6 +187,7 @@
 				C66BEC352C4B0DA000E4502C /* App */,
 				C688F6B42C40805E00EE078E /* Views */,
 				C688F6B32C40804800EE078E /* Models */,
+				C68275442C6EBC970060A9E5 /* Extensions */,
 				C680A16D2B9399AA00E230F4 /* Assets.xcassets */,
 				C6DF78C62C17F45B0061DCE2 /* Info.plist */,
 				C680A16F2B9399AA00E230F4 /* Preview Content */,
@@ -194,6 +201,26 @@
 				C680A1702B9399AA00E230F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C68275412C6EBC750060A9E5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C66BEC372C4B4EC100E4502C /* Solve.xcdatamodeld */,
+				C66BEC602C4B5A3A00E4502C /* Solve+CoreDataClass.swift */,
+				C66BEC612C4B5A3A00E4502C /* Solve+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		C68275442C6EBC970060A9E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C68275422C6EBC900060A9E5 /* Int+DurationFormat.swift */,
+				C68275492C703D670060A9E5 /* UserDefaults+ResetPersonalBests.swift */,
+				C682754B2C703D960060A9E5 /* Binding+IsNotNil.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C688F6B02C407FB700EE078E /* GameView */ = {
@@ -210,6 +237,7 @@
 		C688F6B32C40804800EE078E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C68275412C6EBC750060A9E5 /* CoreData */,
 				C680A1772B93A4F800E230F4 /* Board.swift */,
 				C6E8F6982BFAD0E9005CFC50 /* GameSettings.swift */,
 				C688F6B12C40801B00EE078E /* Models.swift */,
@@ -298,7 +326,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					C680A1652B9399A800E230F4 = {
 						CreatedOnToolsVersion = 15.2;
@@ -365,12 +393,15 @@
 				C6BEFAE82C18D73400BC1458 /* AboutView.swift in Sources */,
 				C6E8F6992BFAD0E9005CFC50 /* GameSettings.swift in Sources */,
 				C688F6BC2C4091A400EE078E /* GameBoardView.swift in Sources */,
+				C682754C2C703D960060A9E5 /* Binding+IsNotNil.swift in Sources */,
 				401A66222B94694100D40FC2 /* SettingsView.swift in Sources */,
 				C66BEC392C4B4EC100E4502C /* Solve.xcdatamodeld in Sources */,
+				C68275462C7027410060A9E5 /* TableView.swift in Sources */,
 				C66BEC5F2C4B59F900E4502C /* Move.swift in Sources */,
 				C688F6AF2C407D7900EE078E /* GameViewModel.swift in Sources */,
 				C6BEFAEA2C18DB9200BC1458 /* LicensesView.swift in Sources */,
 				C680A16A2B9399A800E230F4 /* LoopoverApp.swift in Sources */,
+				C68275432C6EBC900060A9E5 /* Int+DurationFormat.swift in Sources */,
 				C688F6B22C40801B00EE078E /* Models.swift in Sources */,
 				C6B122402C40DE7A00B6229A /* CreateModelContainer.swift in Sources */,
 				C66BEC622C4B5A3A00E4502C /* Solve+CoreDataClass.swift in Sources */,
@@ -382,6 +413,7 @@
 				C66BEC5D2C4B59E400E4502C /* SolveTransformerSetup.swift in Sources */,
 				C6E8F6972BFAD0BC005CFC50 /* GameView.swift in Sources */,
 				C6B122462C41AE9800B6229A /* StatsViewModel.swift in Sources */,
+				C682754A2C703D670060A9E5 /* UserDefaults+ResetPersonalBests.swift in Sources */,
 				C6DF78C52C17A45D0061DCE2 /* HowToPlayView.swift in Sources */,
 				C680A17C2B93FE8900E230F4 /* Box.swift in Sources */,
 				C688F6BA2C40919D00EE078E /* BottomInfoBar.swift in Sources */,
@@ -414,6 +446,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -478,6 +511,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

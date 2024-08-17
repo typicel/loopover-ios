@@ -18,6 +18,10 @@ class StatsViewModel: ObservableObject {
     @Published var selectedGridSize: Int = 5
     @Published var allSolves: [Solve] = []
     
+    @Published var didError: Bool = false
+    @Published var error: Error? = nil
+    @Published var alertMessage: String = ""
+    
     var selectedKeyPath: KeyPath<Solve, Int64> {
         switch shownStat {
         case .moves:
@@ -34,15 +38,14 @@ class StatsViewModel: ObservableObject {
     }
     
     func getAllSolves() {
-        self.allSolves = SolveStorageManager.shared.getAllSolves()
-    }
-    
-    func hundrethsToFormattedTime(_ hundreths: Int) -> String {
-        let minutes = hundreths / 6000
-        let seconds = (hundreths % 6000) / 100
-        let hundredths = (hundreths % 100)
-        
-        return String(format: "%02d:%02d.%02d", minutes, seconds, hundredths)
+        let result = SolveStorageManager.shared.getAllSolves()
+        switch result {
+        case .success(let solves):
+            self.allSolves = solves
+        case .failure(let error):
+            self.error = error
+            self.didError = true
+        }
     }
     
     var bestStat: String {
@@ -83,14 +86,14 @@ class StatsViewModel: ObservableObject {
         
         let average = Double(total) / Double(filteredSolves.count)
         
-        return hundrethsToFormattedTime(Int(average))
+        return Int(average).durationFormat()
     }
     
     var bestSolveTime: String {
         print("getting it for PB_\(selectedGridSize)")
         if let timeInHundreths = UserDefaults.standard.string(forKey: "PB_\(selectedGridSize)") {
             guard let time = Int(timeInHundreths) else { return "--:--:--" }
-            return hundrethsToFormattedTime(time)
+            return time.durationFormat()
         } else {
             return "--:--:--"
         }
@@ -105,10 +108,12 @@ class StatsViewModel: ObservableObject {
         if sortedSolves.count.isMultiple(of: 2) {
             let first = sortedSolves[middleIndex - 1]
             let second = sortedSolves[middleIndex]
-            return hundrethsToFormattedTime(Int((first.timeInHundreths + second.timeInHundreths)) / 2)
+            let duration = Int((first.timeInHundreths + second.timeInHundreths)) / 2
+            
+            return duration.durationFormat()
         }
         
-        return hundrethsToFormattedTime(Int(sortedSolves[middleIndex].timeInHundreths))
+        return Int(sortedSolves[middleIndex].timeInHundreths).durationFormat()
     }
     
     // MARK: - Best, Average, and Median Moves
@@ -162,13 +167,10 @@ class StatsViewModel: ObservableObject {
         return String(sum / 5)
     }
     
-    var lastFiveOrLess: [Solve] {
+    func getLastFiveOrLess() -> [Solve] {
         guard filteredSolves.count > 0 else { return [] }
         
-        let last = filteredSolves.sorted { $0.gameTime > $1.gameTime }.prefix(5)
-        print(last)
-        return Array(last)
+        let last = Array(filteredSolves.sorted { $0.gameTime > $1.gameTime }.prefix(5))
+        return last
     }
-
-
 }

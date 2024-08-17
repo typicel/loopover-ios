@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "%lld" : {
-
-    },
     "%lld moves / %@ mps" : {
       "localizations" : {
         "en" : {
@@ -48,6 +45,9 @@
     "Appearance" : {
 
     },
+    "Are you sure you want to delete all sovles? This includes personal bests. This cannot be undone." : {
+
+    },
     "Board Size" : {
 
     },
@@ -57,10 +57,19 @@
     "ConfettiSwiftUI" : {
 
     },
+    "Confirmation" : {
+
+    },
     "Controls" : {
 
     },
     "Date" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete All Solves" : {
 
     },
     "Developed by [Tyler](https://github.com/typicel) and [Noah](https://github.com/nota5633)" : {
@@ -118,6 +127,12 @@
 
     },
     "Settings" : {
+
+    },
+    "Solves" : {
+
+    },
+    "Something went wrong" : {
 
     },
     "Square Style" : {

@@ -11,12 +11,12 @@ import Charts
 
 struct StatsView: View {
     @Environment(\.modelContext) var modelContext
-    @StateObject var statsViewModel = StatsViewModel()
+    @StateObject var viewModel = StatsViewModel()
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                Picker("Board Size", selection: $statsViewModel.selectedGridSize) {
+                Picker("Board Size", selection: $viewModel.selectedGridSize) {
                     Text("3x3").tag(3)
                     Text("4x4").tag(4)
                     Text("5x5").tag(5)
@@ -29,24 +29,24 @@ struct StatsView: View {
                 
                 VStack {
                     HStack {
-                        MiniStatView(text: "Total Solves", number: String(statsViewModel.filteredSolves.count))
+                        MiniStatView(text: "Total Solves", number: String(viewModel.filteredSolves.count))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                     }
                     HStack {
-                        MiniStatView(text: "Best", number: statsViewModel.bestStat)
+                        MiniStatView(text: "Best", number: viewModel .bestStat)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
-                        MiniStatView(text: "Average", number: statsViewModel.averageStat)
+                        MiniStatView(text: "Average", number: viewModel.averageStat)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10) 
-                        MiniStatView(text: "Median", number: statsViewModel.medianStat)
+                            .cornerRadius(10)
+                        MiniStatView(text: "Median", number: viewModel.medianStat)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.gray.opacity(0.2))
@@ -55,40 +55,57 @@ struct StatsView: View {
                 }
                 
                 Chart {
-                    ForEach(Array(statsViewModel.filteredSolves.enumerated()), id: \.element.id) { offset, solve in
+                    ForEach(Array(viewModel.filteredSolves.enumerated()), id: \.element.id) { offset, solve in
                         LineMark(
                             x: .value("Date", "Game \(offset+1)"),
-                            y: .value("Moves", solve[keyPath: statsViewModel.selectedKeyPath])
+                            y: .value("Moves", solve[keyPath: viewModel.selectedKeyPath])
                         )
                         .foregroundStyle(by: .value("Grid Size", String(solve.gridSize)))
                         .symbol(by: .value("Grid Size", String(solve.gridSize)))
                     }
                 }
                 .chartXAxis(.hidden)
+                .chartYAxis {
+                    if viewModel.shownStat == .moves {
+                        AxisMarks(values: .automatic(desiredCount: 3))
+                    } else {
+                        AxisMarks(values: .automatic(desiredCount: 3)) {
+                            AxisValueLabel(format: TimeFormatStyle())
+                            AxisGridLine()
+                            AxisTick()
+                        }
+                    }
+                }
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
                 
-                Picker("Value", selection: $statsViewModel.shownStat) {
+                Picker("Value", selection: $viewModel.shownStat) {
                     Text("Moves").tag(ShownStat.moves)
                     Text("Time").tag(ShownStat.time)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding([.trailing])
-
-                
             }
             .padding(9)
             .navigationTitle("Stats")
+            .alert(
+                "Something went wrong",
+                isPresented: $viewModel.error.isNotNil(),
+                presenting: viewModel.error,
+                actions: { _ in },
+                message: { error in
+                    Text(error.localizedDescription)
+                }
+            )
+
+
+            
         }
+        
         .onAppear {
-            statsViewModel.getAllSolves()
+            viewModel.getAllSolves()
         }
     }
 }
-
-#Preview {
-    StatsView()
-}
-
 

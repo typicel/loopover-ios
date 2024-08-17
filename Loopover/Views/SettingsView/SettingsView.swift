@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dismiss) var dismiss
     
     @AppStorage("showNumbersOnly") var showNumbersOnly = false
     @AppStorage("doConfettiEffects") var doConfettiEffects = true
@@ -15,6 +16,31 @@ struct SettingsView: View {
     
     @State private var showInfoSheet: Bool = false
     @State private var showAboutSheet: Bool = false
+    
+    @State private var alertTitle: String = ""
+    @State private var alertMessage: String = ""
+    @State private var afterDeleteAlert: Bool = false
+    @State private var deleteConfirmationAlert: Bool = false
+    
+    @State private var didError: Bool = false
+
+    let dataManager = SolveStorageManager.shared
+    
+    func deleteSolves() {
+        let result = dataManager.deleteAllSolves()
+        switch result {
+        case .success():
+            alertTitle = "Done"
+            alertMessage = "All solve data deleted"
+            UserDefaults.standard.resetPersonalBests()
+            
+        case .failure(let error):
+            didError = true
+            alertMessage = error.localizedDescription
+            alertTitle = "Something went wrong..."
+        }
+        
+    }
     
     var body: some View {
         NavigationStack {
@@ -67,10 +93,31 @@ struct SettingsView: View {
                         .foregroundColor(.blue)
                     }
                 }
+                
+                Section(header: Text("Solves")) {
+                    Button("Delete All Solves") {
+                        deleteConfirmationAlert = true
+                    }
+                    .tint(.red)
+                    .alert("Confirmation", isPresented: $deleteConfirmationAlert) {
+                        Button("Delete", role: .destructive) {
+                            dismiss()
+                            self.deleteSolves()
+                            self.afterDeleteAlert = true
+                        }
+                    } message: {
+                        Text("Are you sure you want to delete all sovles? This includes personal bests. This cannot be undone.")
+                    }
+                }
             }
             .listStyle(.insetGrouped)
             .scrollDisabled(true)
             .navigationTitle("Settings")
+            .alert(alertTitle, isPresented: $afterDeleteAlert) {
+                
+            } message: {
+                Text(alertMessage)
+            }
         }
     }
 }

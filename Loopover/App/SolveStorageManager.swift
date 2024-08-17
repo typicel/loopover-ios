@@ -60,7 +60,7 @@ class SolveStorageManager: ObservableObject {
         }
     }
     
-    func getAllSolves() -> [Solve] {
+    func getAllSolves() -> Result<[Solve], Error> {
         let context = perrsistentContainer.viewContext
         let request: NSFetchRequest<Solve> = Solve.fetchRequest()
         
@@ -68,12 +68,25 @@ class SolveStorageManager: ObservableObject {
         
         do {
             results = try context.fetch(request)
+            return .success(results)
         } catch {
             print("Could not fetch solves from Core Data.", error.localizedDescription)
+            return .failure(error)
         }
+    }
+    
+    func deleteAllSolves() -> Result<Void, Error> {
+        let context = perrsistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Solve")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         
-        print("results in data stack: \(results)")
-        return results
+        do {
+            try context.execute(deleteRequest)
+            return .success(())
+        } catch {
+            print("Failed to delete objects: \(error)")
+            return .failure(error)
+        }
     }
     
     private init() {}

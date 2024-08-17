@@ -175,7 +175,7 @@ class GameViewModel: ObservableObject {
         self.gameStarted = false
         self.freezeGestures = true
         
-        self.personalBest = UserDefaults.standard.string(forKey: "\(self.gridSize)")
+        self.personalBest = UserDefaults.standard.string(forKey: "PB_\(self.gridSize)")
     }
     
 }
